@@ -34,11 +34,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-poetry-
 
-      - name: Install dependencies
+      - name: Install dependencies (export + pip install)
         run: |
-          # prefer setting the env var via GITHUB_ENV instead of using `poetry config --local`
+          # avoid running `poetry install --with dev` directly in CI which may fail on some runners
           echo "POETRY_VIRTUALENVS_CREATE=false" >> "$GITHUB_ENV"
-          poetry install --no-interaction --with dev
+          poetry --version
+          # ensure lockfile is available and up to date
+          poetry lock --no-update || true
+          # export runtime + dev requirements to a requirements.txt and install via pip
+          poetry export -f requirements.txt --without-hashes --output requirements.txt --with dev || poetry export -f requirements.txt --without-hashes --output requirements.txt
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
 
       - name: Run black (check)
         run: |
