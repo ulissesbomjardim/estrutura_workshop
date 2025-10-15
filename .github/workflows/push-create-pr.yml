@@ -49,7 +49,7 @@ jobs:
             const branch = context.ref.replace('refs/heads/','');
             const title = `chore: sync ${branch} -> dev`;
             const body = `Automatic PR created/updated by CI after tests passed on ${branch}.`;
-            const head = `${owner}:${branch}`;
+            const head = branch;
             const resp = await github.rest.pulls.list({ owner, repo, state: 'open', head, per_page: 100 });
             const prs = resp.data || [];
             if (!prs || prs.length === 0) {
