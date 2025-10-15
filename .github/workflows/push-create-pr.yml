@@ -81,6 +81,8 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const branch = context.ref.replace('refs/heads/','');
+            // rebuild the PR title here (was defined in create_pr step)
+            const title = `ci: sync(${branch}) -> dev [auto]`;
             const issueTitle = `Approval required: ${title} (PR #${prNumber})`;
             const issueBody = `The PR [#${prNumber}](${prUrl}) from branch \`${branch}\` passed CI and is ready for review.\n\nReview checklist:\n- Ensure tests and static checks pass\n- Confirm changes are scoped to the intended work\n\nTo approve and merge this PR into \`dev\`, a repository maintainer should comment on this issue with the command:\n\n/approve-pr #${prNumber}\n\nAfter approval the workflow will perform a squash merge. If you want a different merge strategy, update the workflow.`;
             const issuesResp = await github.rest.issues.listForRepo({ owner, repo, state: 'open', per_page: 100 });
