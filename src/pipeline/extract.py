@@ -14,8 +14,6 @@ args: input_path (str): caminho para o diretório de entrada
 returns: lista de DataFrames
 """
 
-input_path = "data/input"
-
 def extract_fron_excel(input_path: str) -> List[pd.DataFrame]:
     all_files = glob.glob(os.path.join(input_path, "*.xlsx"))
        
@@ -26,5 +24,5 @@ def extract_fron_excel(input_path: str) -> List[pd.DataFrame]:
     return data_list
 
 if __name__ == "__main__":
-    data_list = extract_fron_excel(input_path)
+    data_list = extract_fron_excel("data/input")
     print(data_list)
