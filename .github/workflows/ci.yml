@@ -21,7 +21,8 @@ jobs:
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org | python - --version 1.5.1
-          echo "::add-path::${HOME}/.local/bin"
+          # add poetry to PATH using the supported $GITHUB_PATH file
+          echo "${HOME}/.local/bin" >> "$GITHUB_PATH"
 
       - name: Cache Poetry and pip
         uses: actions/cache@v4
