@@ -1,5 +1,9 @@
 name: Approve PR via issue comment
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   issue_comment:
     types: [created]
@@ -46,7 +50,6 @@ jobs:
               return;
             }
 
-            // Optionally check mergeable state
             // Attempt merge
             try {
               await github.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'merge' });
@@ -54,6 +57,3 @@ jobs:
             } catch (err) {
               core.setFailed(`Failed to merge PR #${prNumber}: ${err.message}`);
             }
-permissions:
-  contents: write
-  pull-requests: write
