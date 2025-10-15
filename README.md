@@ -1,3 +1,5 @@
+[![Codecov](https://img.shields.io/badge/coverage-unknown-lightgrey)](https://codecov.io/gh/ulissesbomjardim/estrutura_workshop)
+
 # Estrutura Workshop
 
 Este repositório contém material do workshop "Jornada de Dados".
