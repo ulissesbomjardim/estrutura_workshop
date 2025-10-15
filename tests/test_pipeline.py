@@ -28,7 +28,8 @@ def test_main_executes_pipeline_and_prints_messages(monkeypatch, capsys):
     monkeypatch.setitem(sys.modules, "pipeline", pipeline_pkg)
 
     mod_ext = types.ModuleType("pipeline.extract")
-    mod_ext.extract_fron_excel = mock_extract
+    # updated function name in source is `extract_from_excel`
+    mod_ext.extract_from_excel = mock_extract
     monkeypatch.setitem(sys.modules, "pipeline.extract", mod_ext)
 
     mod_trans = types.ModuleType("pipeline.transform")
