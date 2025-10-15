@@ -68,7 +68,7 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const head = `${owner}:${context.ref.replace('refs/heads/','')}`;
-            const resp = await github.pulls.list({ owner, repo, state: 'open', head, per_page: 100 });
+            const resp = await github.rest.pulls.list({ owner, repo, state: 'open', head, per_page: 100 });
             const prs = resp.data || [];
             if (!prs || prs.length === 0) {
               core.setFailed(`No open PR found for branch ${github.ref}`);
@@ -91,12 +91,12 @@ jobs:
             const issueTitle = `Approval needed: PR #${prNumber}`;
             const issueBody = `The PR [#${prNumber}](${prUrl}) from branch \`${branchName}\` passed CI.\n\nTo approve and merge this PR into \`dev\`, comment on this issue with:\n\n/approve-pr #${prNumber}\n`;
 
-            const issuesResp = await github.issues.listForRepo({ owner, repo, state: 'open', per_page: 100 });
+            const issuesResp = await github.rest.issues.listForRepo({ owner, repo, state: 'open', per_page: 100 });
             const issues = issuesResp.data || [];
             const already = issues.find(i => i.title === issueTitle);
             if (already) {
               core.info(`Issue already exists: ${already.html_url}`);
               return;
             }
-            const issueResp = await github.issues.create({ owner, repo, title: issueTitle, body: issueBody });
+            const issueResp = await github.rest.issues.create({ owner, repo, title: issueTitle, body: issueBody });
             core.info(`Created issue: ${issueResp.data.html_url}`);

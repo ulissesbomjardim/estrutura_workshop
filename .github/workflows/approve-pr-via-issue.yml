@@ -40,7 +40,7 @@ jobs:
             // Try to get PR details
             let pr;
             try {
-              pr = await github.pulls.get({ owner, repo, pull_number: prNumber });
+              pr = await github.rest.pulls.get({ owner, repo, pull_number: prNumber });
             } catch (err) {
               core.setFailed(`Failed to get PR #${prNumber}: ${err.message}`);
               return;
@@ -53,7 +53,7 @@ jobs:
 
             // Attempt merge
             try {
-              await github.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'merge' });
+              await github.rest.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'merge' });
               core.info(`PR #${prNumber} merged successfully.`);
             } catch (err) {
               core.setFailed(`Failed to merge PR #${prNumber}: ${err.message}`);
