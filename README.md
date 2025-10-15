@@ -63,3 +63,8 @@ Observação sobre caching
 ------------------------
 
 O workflow do CI já tenta acelerar execuções usando cache. Se quiser ajustar o cache (por exemplo, incluir virtualenvs), edite `.github/workflows/ci.yml`.
+
+CI trigger
+----------
+
+Este arquivo foi atualizado para forçar uma nova execução do workflow de CI para validação em 2025-10-15.
