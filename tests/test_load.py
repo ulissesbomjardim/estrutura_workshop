@@ -7,8 +7,9 @@ import pytest
 
 from src.pipeline.load import load_to_excel
 
+
 def test_load_to_excel_creates_file_and_returns_message(tmp_path):
-    df = pd.DataFrame({'A': [1, 2], 'B': ['x', 'y']})
+    df = pd.DataFrame({"A": [1, 2], "B": ["x", "y"]})
     out_dir = tmp_path / "out"
     filename = "test_file"
 
@@ -21,8 +22,9 @@ def test_load_to_excel_creates_file_and_returns_message(tmp_path):
     read_df = pd.read_excel(saved)
     pdt.assert_frame_equal(df.reset_index(drop=True), read_df)
 
+
 def test_load_to_excel_creates_nested_dir_if_missing(tmp_path):
-    df = pd.DataFrame({'A': [3], 'B': ['z']})
+    df = pd.DataFrame({"A": [3], "B": ["z"]})
     out_dir = tmp_path / "nested" / "dir"
     filename = "f2"
 
@@ -34,6 +36,7 @@ def test_load_to_excel_creates_nested_dir_if_missing(tmp_path):
     saved = out_dir / f"{filename}.xlsx"
     assert saved.exists()
 
+
 import os
 from pathlib import Path
 
@@ -43,8 +46,9 @@ import pytest
 
 from src.pipeline.load import load_to_excel
 
+
 def test_load_to_excel_creates_file_and_returns_message(tmp_path):
-    df = pd.DataFrame({'A': [1, 2], 'B': ['x', 'y']})
+    df = pd.DataFrame({"A": [1, 2], "B": ["x", "y"]})
     out_dir = tmp_path / "out"
     filename = "test_file"
 
@@ -57,8 +61,9 @@ def test_load_to_excel_creates_file_and_returns_message(tmp_path):
     read_df = pd.read_excel(saved)
     pdt.assert_frame_equal(df.reset_index(drop=True), read_df)
 
+
 def test_load_to_excel_creates_nested_dir_if_missing(tmp_path):
-    df = pd.DataFrame({'A': [3], 'B': ['z']})
+    df = pd.DataFrame({"A": [3], "B": ["z"]})
     out_dir = tmp_path / "nested" / "dir"
     filename = "f2"
 
