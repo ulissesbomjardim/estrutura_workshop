@@ -1,5 +1,9 @@
 {
     "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.venv": true,
         "**/.git": false
-    }
+    },
+    "python.formatting.provider": "black"
 }
