@@ -36,7 +36,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry config virtualenvs.create false --local
+          # prefer setting the env var via GITHUB_ENV instead of using `poetry config --local`
+          echo "POETRY_VIRTUALENVS_CREATE=false" >> "$GITHUB_ENV"
           poetry install --no-interaction --with dev
 
       - name: Run black (check)
