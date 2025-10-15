@@ -42,8 +42,8 @@ jobs:
               return;
             }
             try {
-              await github.rest.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'merge' });
-              core.info(`PR #${prNumber} merged successfully.`);
+              await github.rest.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'squash' });
+              core.info(`PR #${prNumber} squashed and merged successfully.`);
             } catch (err) {
-              core.setFailed(`Failed to merge PR #${prNumber}: ${err.message}`);
+              core.setFailed(`Failed to squash-merge PR #${prNumber}: ${err.message}`);
             }
