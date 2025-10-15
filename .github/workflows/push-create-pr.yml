@@ -24,7 +24,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt || true
+          # install project runtime dependencies
+          python -m pip install "pandas>=2.3.3,<3.0.0" "openpyxl>=3.1.5,<4.0.0"
+          # install test tooling
           python -m pip install "pytest>=8.4.2,<9.0.0"
       - name: Run tests
         run: python -m pytest -q --maxfail=1
@@ -49,7 +51,7 @@ jobs:
             const branch = context.ref.replace('refs/heads/','');
             const title = `chore: sync ${branch} -> dev`;
             const body = `Automatic PR created/updated by CI after tests passed on ${branch}.`;
-            const head = `${owner}:${branch}`;
+            const head = branch;
             const resp = await github.rest.pulls.list({ owner, repo, state: 'open', head, per_page: 100 });
             const prs = resp.data || [];
             if (!prs || prs.length === 0) {
