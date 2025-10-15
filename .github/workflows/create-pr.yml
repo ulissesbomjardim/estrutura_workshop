@@ -70,8 +70,9 @@ jobs:
             const head = `${owner}:${context.ref.replace('refs/heads/','')}`;
             const resp = await github.rest.pulls.list({ owner, repo, state: 'open', head, per_page: 100 });
             const prs = resp.data || [];
+            const branchName = context.ref.replace('refs/heads/','');
             if (!prs || prs.length === 0) {
-              core.setFailed(`No open PR found for branch ${github.ref}`);
+              core.setFailed(`No open PR found for branch ${branchName}`);
               return;
             }
             const pr = prs[0];
