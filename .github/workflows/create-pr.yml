@@ -43,7 +43,7 @@ jobs:
       - name: Create or update PR to dev
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
           commit-message: "chore: sync ${{ github.ref_name }} -> dev (CI)"
           title: "chore: sync ${{ github.ref_name }} -> dev"
           body: "Automatic PR created/updated by CI after tests passed on ${{ github.ref_name }}."
@@ -62,7 +62,7 @@ jobs:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const head = `${owner}:${github.ref.replace('refs/heads/','')}`;
+            const head = `${owner}:${context.ref.replace('refs/heads/','')}`;
             const resp = await github.pulls.list({ owner, repo, state: 'open', head, per_page: 100 });
             const prs = resp.data || [];
             if (!prs || prs.length === 0) {
@@ -81,7 +81,7 @@ jobs:
             const prUrl = '${{ steps.find_pr.outputs.pr_html_url }}';
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const branchName = github.ref.replace('refs/heads/','');
+            const branchName = context.ref.replace('refs/heads/','');
             const issueTitle = `Approval needed: PR #${prNumber}`;
             const issueBody = `The PR [#${prNumber}](${prUrl}) from branch \`${branchName}\` passed CI.\n\nTo approve and merge this PR into \`dev\`, comment on this issue with:\n\n/approve-pr #${prNumber}\n`;
 
