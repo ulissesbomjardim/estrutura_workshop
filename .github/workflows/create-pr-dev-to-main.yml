@@ -27,6 +27,11 @@ jobs:
             const repo = context.repo.repo;
             const head = 'dev';
             const base = 'main';
+            // Configuration: set draft=true to create PRs as draft.
+            // Optionally add reviewers or labels by filling these arrays.
+            const createAsDraft = true;
+            const reviewers = []; // e.g. ['alice','bob'] or leave empty
+            const labels = []; // e.g. ['auto-sync','needs-review']
 
             // look for an open PR from dev -> main
             const listResp = await github.rest.pulls.list({ owner, repo, state: 'open', head: `${owner}:${head}`, base, per_page: 100 });
@@ -40,6 +45,27 @@ jobs:
             const title = `chore(release): sync ${head} -> ${base}`;
             const body = `Automatic PR created after a successful merge into \`${head}\`.\n\nPlease review and merge into \`${base}\` when ready.`;
 
-            const createResp = await github.rest.pulls.create({ owner, repo, title, head, base, body });
+            const createResp = await github.rest.pulls.create({ owner, repo, title, head, base, body, draft: createAsDraft });
             core.info(`Created PR #${createResp.data.number} ${createResp.data.html_url}`);
             core.setOutput('pr_number', createResp.data.number.toString());
+            const prNum = createResp.data.number;
+
+            // Add reviewers if configured
+            if (reviewers && reviewers.length > 0) {
+              try {
+                await github.rest.pulls.requestReviewers({ owner, repo, pull_number: prNum, reviewers });
+                core.info(`Requested reviewers: ${reviewers.join(', ')}`);
+              } catch (err) {
+                core.info(`Failed to request reviewers: ${err.message}`);
+              }
+            }
+
+            // Add labels if configured
+            if (labels && labels.length > 0) {
+              try {
+                await github.rest.issues.addLabels({ owner, repo, issue_number: prNum, labels });
+                core.info(`Added labels: ${labels.join(', ')}`);
+              } catch (err) {
+                core.info(`Failed to add labels: ${err.message}`);
+              }
+            }

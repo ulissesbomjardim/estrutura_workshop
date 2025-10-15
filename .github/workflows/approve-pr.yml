@@ -12,38 +12,55 @@ jobs:
   approve-pr:
     runs-on: ubuntu-latest
     if: >
-      contains(github.event.comment.body, '/approve-pr') &&
+      github.event.comment.body != null && (
+        contains(github.event.comment.body, 'approve-pr') ||
+        contains(github.event.comment.body, 'Approve-pr') ||
+        contains(github.event.comment.body, 'approve-PR')
+      ) &&
       (github.event.comment.author_association == 'OWNER' ||
        github.event.comment.author_association == 'MEMBER' ||
        github.event.comment.author_association == 'COLLABORATOR')
     steps:
-      - name: Parse comment & merge PR
+      - name: Detect ACTIONS_PUSH_TOKEN
+        id: detect_pat
+        shell: bash
+        env:
+          ACTIONS_PUSH_TOKEN: ${{ secrets.ACTIONS_PUSH_TOKEN }}
+        run: |
+          if [ -n "${ACTIONS_PUSH_TOKEN}" ]; then
+            echo "has_pat=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_pat=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Parse comment & merge PR (use ACTIONS_PUSH_TOKEN)
+        if: ${{ steps.detect_pat.outputs.has_pat == 'true' }}
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.ACTIONS_PUSH_TOKEN || secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
           script: |
-            const body = context.payload.comment.body || '';
-            const m = body.match(/\/approve-pr\s+#?(\d+)/i);
-            if (!m) {
-              core.setFailed('No PR number found in comment. Use "/approve-pr #123"');
-              return;
+            const fs = require('fs');
+            const path = require('path');
+            const scriptPath = path.join(process.cwd(), '.github', 'scripts', 'approve-pr.js');
+            if (!fs.existsSync(scriptPath)) {
+              core.setFailed(`Shared script not found at ${scriptPath}`);
+            } else {
+              require(scriptPath);
+              await globalThis.approvePR(github, context, core);
             }
-            const prNumber = parseInt(m[1], 10);
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            try {
-              const pr = await github.rest.pulls.get({ owner, repo, pull_number: prNumber });
-              if (pr.data.merged) {
-                core.info(`PR #${prNumber} already merged.`);
-                return;
-              }
-            } catch (err) {
-              core.setFailed(`Failed to get PR #${prNumber}: ${err.message}`);
-              return;
-            }
-            try {
-              await github.rest.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'squash' });
-              core.info(`PR #${prNumber} squashed and merged successfully.`);
-            } catch (err) {
-              core.setFailed(`Failed to squash-merge PR #${prNumber}: ${err.message}`);
+
+      - name: Parse comment & merge PR (fallback to GITHUB_TOKEN)
+        if: ${{ steps.detect_pat.outputs.has_pat == 'false' }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const scriptPath = path.join(process.cwd(), '.github', 'scripts', 'approve-pr.js');
+            if (!fs.existsSync(scriptPath)) {
+              core.setFailed(`Shared script not found at ${scriptPath}`);
+            } else {
+              require(scriptPath);
+              await globalThis.approvePR(github, context, core);
             }
