@@ -1,0 +1,45 @@
+name: Create PR dev -> main on dev merge
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - dev
+
+jobs:
+  create-pr-to-main:
+    name: Create or update PR dev -> main
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create or update PR to main
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const head = 'dev';
+            const base = 'main';
+
+            // look for an open PR from dev -> main
+            const listResp = await github.rest.pulls.list({ owner, repo, state: 'open', head: `${owner}:${head}`, base, per_page: 100 });
+            const prs = listResp.data || [];
+            if (prs.length > 0) {
+              core.info(`Found existing PR #${prs[0].number} from ${head} -> ${base}, skipping creation.`);
+              core.setOutput('pr_number', prs[0].number.toString());
+              return;
+            }
+
+            const title = `chore(release): sync ${head} -> ${base}`;
+            const body = `Automatic PR created after a successful merge into \`${head}\`.\n\nPlease review and merge into \`${base}\` when ready.`;
+
+            const createResp = await github.rest.pulls.create({ owner, repo, title, head, base, body });
+            core.info(`Created PR #${createResp.data.number} ${createResp.data.html_url}`);
+            core.setOutput('pr_number', createResp.data.number.toString());
