@@ -1,3 +1,4 @@
+
 name: CI
 
 on:
@@ -13,54 +14,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Debug: environment and workflow snapshot
-        run: |
-          echo "GITHUB_SHA=$GITHUB_SHA"
-          echo "GITHUB_REF=$GITHUB_REF"
-          echo "--- Last commit on checked-out repo ---"
-          git --no-pager log -1 --pretty=fuller || true
-          echo "--- CI workflow file (ci.yml) content ---"
-          sed -n '1,200p' .github/workflows/ci.yml || true
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'
 
-      - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python - --version 1.5.1
-          # add poetry to PATH using the supported $GITHUB_PATH file
-          echo "${HOME}/.local/bin" >> "$GITHUB_PATH"
-
-      - name: Cache Poetry and pip
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/pypoetry
-            ~/.cache/pip
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-poetry-
-
       - name: Install dependencies (pip)
         run: |
-          # avoid Poetry export/install incompatibilities on the runner: install known deps with pip
           python -m pip install --upgrade pip
-          # runtime deps
           python -m pip install "pandas>=2.3.3,<3.0.0" "openpyxl>=3.1.5,<4.0.0"
-          # dev/test tools
           python -m pip install "pytest>=8.4.2,<9.0.0" "pytest-cov>=4.0.0,<5.0.0" "black>=24.3.0,<25.0.0" codecov
 
       - name: Run black (check)
-        run: |
-          # run black directly via python to avoid relying on `poetry run` in the runner
-          python -m black --check .
+        run: python -m black --check .
 
       - name: Run tests
-        run: |
-          # run pytest directly via python to avoid relying on poetry run in the runner
-          python -m pytest -q --cov=src --cov-report=xml
+        run: python -m pytest -q --cov=src --cov-report=xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
