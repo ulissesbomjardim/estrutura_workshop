@@ -68,3 +68,31 @@ CI trigger
 ----------
 
 Este arquivo foi atualizado para forçar uma nova execução do workflow de CI para validação em 2025-10-15.
+
+Codecov: como obter o token e configurar (rápido)
+-----------------------------------------------
+
+Onde obter o token:
+
+- Acesse https://codecov.io e autentique com a conta ligada ao seu GitHub.
+- Abra o repositório correspondente no Codecov.
+- Vá em Settings / Repository Upload Token (ou similar) e copie o token.
+
+Como adicionar o token no GitHub (web UI):
+
+1. No GitHub abra o repositório → Settings → Secrets and variables → Actions.
+2. Clique em "New repository secret".
+3. Name: `CODECOV_TOKEN`  — Value: cole o token do Codecov.
+4. Salve.
+
+Como adicionar o token com a CLI `gh` (PowerShell):
+
+```powershell
+# login se necessário
+gh auth login
+
+# definir secret (modo simples)
+gh secret set CODECOV_TOKEN --body '<COLE_AQUI_O_TOKEN>' --repo ulissesbomjardim/estrutura_workshop
+```
+
+Depois disso, re-run o workflow e verifique a etapa "Upload coverage to Codecov" para garantir que o upload foi bem sucedido.
