@@ -5,11 +5,7 @@ permissions:
   pull-requests: write
 
 on:
-  pull_request:
-    branches: [dev]
-    types: [opened, reopened, synchronize]
-  push:
-    branches: [dev]
+  workflow_dispatch: # require manual trigger to create PR from dev -> main
 
 jobs:
   test-and-pr:
@@ -32,13 +28,12 @@ jobs:
       - name: Run tests
         run: python -m pytest -q --maxfail=1
 
-      - name: Create Pull Request to main (only on push to dev)
-        if: ${{ github.event_name == 'push' }}
+      - name: Create Pull Request to main (manual)
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: sync dev -> main (CI automatic PR)"
+          token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
+          commit-message: "chore: sync dev -> main (manual)"
           title: "chore: sync dev -> main"
-          body: "Automatic PR created by CI after tests passed on dev."
+          body: "Manual PR created by CI workflow (triggered via workflow_dispatch)."
           base: main
           branch: dev
