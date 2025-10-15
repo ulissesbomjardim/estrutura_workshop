@@ -32,3 +32,5 @@ build-backend = "poetry.core.masonry.api"
 packages = [
     { include = "pipeline", from = "src" }
 ]
+
+format = "isort ."
