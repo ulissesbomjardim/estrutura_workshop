@@ -34,17 +34,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-poetry-
 
-      - name: Install dependencies (export + pip install)
+      - name: Install dependencies (pip)
         run: |
-          # avoid running `poetry install --with dev` directly in CI which may fail on some runners
-          echo "POETRY_VIRTUALENVS_CREATE=false" >> "$GITHUB_ENV"
-          poetry --version
-          # ensure lockfile is available and up to date
-          poetry lock --no-update || true
-          # export runtime + dev requirements to a requirements.txt and install via pip
-          poetry export -f requirements.txt --without-hashes --output requirements.txt --with dev || poetry export -f requirements.txt --without-hashes --output requirements.txt
+          # avoid Poetry export/install incompatibilities on the runner: install known deps with pip
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
+          # runtime deps
+          python -m pip install "pandas>=2.3.3,<3.0.0" "openpyxl>=3.1.5,<4.0.0"
+          # dev/test tools
+          python -m pip install "pytest>=8.4.2,<9.0.0" "pytest-cov>=4.0.0,<5.0.0" "black>=24.3.0,<25.0.0" codecov
 
       - name: Run black (check)
         run: |
