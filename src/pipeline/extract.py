@@ -1,12 +1,11 @@
-import os
 import glob
+import os
+from typing import List
 
 import pandas as pd
 
-from typing import List
-
 """
-função para ler os dados de arquivos *.xslx 
+função para ler os dados de arquivos *.xslx
 no diretório 'data/input' e retornar uma lista de DataFrames.
 
 args: input_path (str): caminho para o diretório de entrada
