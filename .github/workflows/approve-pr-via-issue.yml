@@ -23,6 +23,7 @@ jobs:
       - name: Parse comment & merge PR
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
           script: |
             const body = context.payload.comment.body || '';
             const m = body.match(/\/approve-pr\s+#?(\d+)/i);
