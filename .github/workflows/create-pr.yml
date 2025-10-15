@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -40,19 +40,45 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Create or update PR to dev (via API)
+        id: create_pr
+        uses: actions/github-script@v6
         with:
-          token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const branchName = context.ref.replace('refs/heads/','');
+            const title = `chore: sync ${branchName} -> dev`;
+            const body = `Automatic PR created/updated by CI after tests passed on ${branchName}.`;
 
-      - name: Create or update PR to dev
-        uses: peter-evans/create-pull-request@v4
-        with:
-          token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
-          commit-message: "chore: sync ${{ github.ref_name }} -> dev (CI)"
-          title: "chore: sync ${{ github.ref_name }} -> dev"
-          body: "Automatic PR created/updated by CI after tests passed on ${{ github.ref_name }}."
-          base: dev
-          branch: ${{ github.ref_name }}
+            // Look for an open PR with this head
+            const head = `${owner}:${branchName}`;
+            const resp = await github.rest.pulls.list({ owner, repo, state: 'open', head, per_page: 100 });
+            const prs = resp.data || [];
+
+            if (!prs || prs.length === 0) {
+              // Create a new PR from the branch into dev
+              core.info(`No open PR found for branch ${branchName}, creating one.`);
+              const createResp = await github.rest.pulls.create({ owner, repo, title, head: branchName, base: 'dev', body });
+              core.setOutput('pr_number', createResp.data.number.toString());
+              core.setOutput('pr_html_url', createResp.data.html_url);
+            } else {
+              // Update the first existing PR's title/body to keep it in sync
+              const pr = prs[0];
+              core.info(`Found existing PR #${pr.number} for branch ${branchName}, updating title/body.`);
+              await github.rest.pulls.update({ owner, repo, pull_number: pr.number, title, body });
+              core.setOutput('pr_number', pr.number.toString());
+              core.setOutput('pr_html_url', pr.html_url);
+            }
+
+      - name: Verify PR created
+        run: |
+          echo "PR number from create step: ${{ steps.create_pr.outputs.pr_number }}"
+          if [ -z "${{ steps.create_pr.outputs.pr_number }}" ]; then
+            echo "No PR was created or found by the create-or-update step. Failing the job for visibility.";
+            exit 1;
+          fi
 
   create-approval-issue:
     name: Create approval issue (after PR exists and tests passed)
@@ -63,7 +89,7 @@ jobs:
         id: find_pr
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
@@ -72,7 +98,9 @@ jobs:
             const prs = resp.data || [];
             const branchName = context.ref.replace('refs/heads/','');
             if (!prs || prs.length === 0) {
-              core.setFailed(`No open PR found for branch ${branchName}`);
+              core.info(`No open PR found for branch ${branchName}. Skipping issue creation.`);
+              core.setOutput('pr_number', '');
+              core.setOutput('pr_html_url', '');
               return;
             }
             const pr = prs[0];
@@ -82,7 +110,7 @@ jobs:
       - name: Create approval issue for PR
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.ACTIONS_PUSH_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = parseInt('${{ steps.find_pr.outputs.pr_number }}', 10);
             const prUrl = '${{ steps.find_pr.outputs.pr_html_url }}';
