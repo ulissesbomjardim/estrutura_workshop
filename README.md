@@ -44,3 +44,20 @@ Ou no cmd.exe:
 ```bat
 copy NUL README.md
 ```
+
+CI / Codecov
+------------
+
+Para que o upload de cobertura funcione em repositórios privados no GitHub Actions, adicione o secret `CODECOV_TOKEN` nas configurações do repositório:
+
+1. No GitHub, abra o repositório > Settings > Secrets and variables > Actions.
+2. Clique em "New repository secret".
+3. Nomeie como `CODECOV_TOKEN` e cole o token que você obteve do Codecov (Settings > Tokens no site do Codecov).
+4. Salve.
+
+Se o repositório for público, o upload normalmente funciona sem token, mas adicionar o secret permite garantir controle sobre o upload.
+
+Observação sobre caching
+------------------------
+
+O workflow do CI já tenta acelerar execuções usando cache. Se quiser ajustar o cache (por exemplo, incluir virtualenvs), edite `.github/workflows/ci.yml`.
