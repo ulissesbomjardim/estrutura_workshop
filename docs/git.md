@@ -1,293 +1,201 @@
-# Git e GitHub — conceitos, arquivos e CI/CD
+# 📂 Git e GitHub — Controle de Versão
 
-Esta página explica em detalhes o que são e para que servem os arquivos/pastas relacionados ao Git e GitHub neste repositório, como criar um repositório no GitHub, como configurar GitHub Actions (CI/CD), como gerar tokens/secrets e os principais comandos Git. Tudo em linguagem acessível para que qualquer pessoa consiga entender e reproduzir.
-
----
-
-## Índice
-
-- O que é `.git`?
-- O que é `.github/` e o que vai dentro dela?
-- O que fazem `.gitattributes` e `.gitignore`?
-- Como criar esses arquivos/pastas localmente
-- Como criar um repositório no GitHub e enviar o projeto
-- GitHub Actions: como funcionam, permissões e secrets
-- Tokens e Secrets: criar e configurar
-- Principais comandos Git (passo a passo)
-- Como o CI/CD foi criado neste projeto (análise dos workflows)
-- Dicas e problemas comuns
+Esta página explica os conceitos fundamentais do Git e GitHub, como configurar o projeto e trabalhar com versionamento e colaboração.
 
 ---
 
-## O que é `.git`?
+## 🎯 Visão Geral
 
-- `.git` é a pasta oculta que o Git cria no diretório do projeto quando você inicializa um repositório com `git init` ou quando clona um repositório (`git clone`).
-- Ela contém todo o histórico de versões, referências, branches, tags, objetos (commits, blobs), configuração local e hooks.
-- Você normalmente não olha dentro desta pasta nem a comita — ela é o "banco de dados" do Git para o seu repositório local.
+### 🔄 **Git vs GitHub**:
+- **Git**: Sistema de controle de versão distribuído
+- **GitHub**: Plataforma para hospedar repositórios Git na nuvem
+- **Benefícios**: Histórico, colaboração, backup, CI/CD
 
-Exemplo: se você rodar `git init` na raiz do projeto, será criada a pasta `.git/`.
+---
 
-```powershell
-cd G:\dev\Jornada_de_dados\estrutura_workshop
+## 📁 Estrutura de Arquivos Git
+
+### 🔒 **`.git/` — Repositório Local**
+- **Localização**: Pasta oculta na raiz do projeto
+- **Conteúdo**: Histórico, branches, configurações
+- **Criação**: Automática com `git init` ou `git clone`
+
+```bash
+# Inicializar repositório
 git init
-ls -Force -Directory
-# verá .git entre os diretórios ocultos
+
+# Verificar pasta (Windows)
+Get-ChildItem -Force | Where-Object {$_.Name -eq ".git"}
 ```
 
----
-
-## O que é `.github/`?
-
-- `.github/` é uma pasta no repositório onde você coloca arquivos específicos do GitHub: templates de Pull Request, templates de issues, workflows do GitHub Actions, e outras configurações (dependabot, CODEOWNERS, etc).
-- No nosso projeto existe:
-  - `.github/PULL_REQUEST_TEMPLATE.md` — template usado quando alguém abre um pull request.
-  - `.github/workflows/` — contém os YAMLs que descrevem pipelines de CI/CD (GitHub Actions).
-
-Arquivos comuns dentro de `.github/`:
-- `workflows/*.yml` — pipelines do Actions.
-- `DEPENDABOT.yml` — configurações do Dependabot.
-- `CODEOWNERS` — define quem é responsável por arquivos/paths.
-- `PULL_REQUEST_TEMPLATE.md` / `ISSUE_TEMPLATE/` — templates para PRs e issues.
-
----
-
-## O que fazem `.gitattributes` e `.gitignore`?
-
-### `.gitattributes`
-- Controla como o Git trata arquivos (fins de linha, diff/merge, filtros, linguagens para linguist).
-- No projeto temos regras para forçar LFs em arquivos de texto e manter CRLF em scripts PowerShell, além de marcar imagens e binários como `binary`.
-- Exemplo de uso prático: evitar que arquivos Markdown ou YAML mudem automaticamente os fins de linha entre plataformas.
-
-### `.gitignore`
-- Diz ao Git quais arquivos/pastas não devem ser monitorados pelo versionamento (ex.: `.venv/`, `site/`, `__pycache__/`).
-- Evita que arquivos temporários, chaves e builds sejam acidentalmente adicionados ao repositório.
-
----
-
-## Como criar esses arquivos/pastas localmente
-
-### Criar `.git` (inicializar repositório)
-
-```powershell
-cd G:\dev\Jornada_de_dados\estrutura_workshop
-git init
-```
-
-ou clonar um repositório remoto:
-
-```powershell
-git clone https://github.com/<usuario>/<repositorio>.git
-```
-
-### Criar `.github/` e workflows
-
-```powershell
-mkdir .github
-mkdir .github\workflows
-# criar arquivo de workflow
-notepad .github\workflows\ci.yml
-```
-
-### Criar `.gitignore` e `.gitattributes`
-
-Crie os arquivos na raiz e adicione regras, por exemplo:
-
-`.gitignore` (exemplo mínimo):
+### ⚙️ **`.github/` — Configurações do GitHub**
 
 ```
+.github/
+├── workflows/              # 🚀 GitHub Actions (CI/CD)
+│   ├── ci.yml
+│   ├── push-create-pr.yml
+│   └── create-pr-dev-to-main.yml
+├── PULL_REQUEST_TEMPLATE.md # 📝 Template para PRs
+├── ISSUE_TEMPLATE/          # 🐛 Templates para issues
+└── CODEOWNERS              # 👥 Responsáveis por código
+```
+
+### 🚫 **`.gitignore` — Arquivos Ignorados**
+
+Especifica quais arquivos **NÃO** versionar:
+
+```gitignore
+# Ambientes virtuais
 .venv/
+.env
+
+# Cache Python
 __pycache__/
 *.pyc
+*.pyo
+
+# Documentação gerada
 site/
+
+# IDEs
+.vscode/
+.idea/
+
+# Temporários
+*.tmp
+*.log
 ```
 
-`.gitattributes` (exemplo mínimo):
+### 🔧 **`.gitattributes` — Atributos de Arquivo**
 
-```
-*.md text eol=lf
+Controla como Git trata diferentes tipos de arquivo:
+
+```gitattributes
+# Fins de linha
 *.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
 *.ps1 text eol=crlf
-```
 
-Depois adicione e comite:
-
-```powershell
-git add .gitignore .gitattributes
-git commit -m "Add gitignore and gitattributes"
+# Binários
+*.png binary
+*.jpg binary
+*.xlsx binary
 ```
 
 ---
 
-## Como criar um repositório no GitHub e enviar o projeto
+## 🚀 Configuração Inicial
 
-1. No GitHub, clique em "New repository".
-2. Preencha o nome, descrição e escolha público ou privado.
-3. Não marque a opção de criar `README`/`.gitignore` se você já tiver esses arquivos localmente (ou marque se preferir).
-4. Após criado, GitHub mostra a URL para clonar/push remoto.
+### 👤 **1. Configurar Usuário**
+```bash
+# Configuração global
+git config --global user.name "Seu Nome"
+git config --global user.email "seu.email@example.com"
 
-Exemplo de fluxo local para enviar:
+# Verificar configuração
+git config --list
+```
 
-```powershell
-# cria remote chamado origin
-git remote add origin https://github.com/<usuario>/<repositorio>.git
-# verificar branch atual (ex: main)
-git branch -M main
-# enviar ao remote
+### 📁 **2. Inicializar Projeto**
+
+#### 🆕 **Projeto Novo**:
+```bash
+# Inicializar repositório
+git init
+
+# Adicionar arquivos
+git add .
+git commit -m "Initial commit"
+
+# Conectar ao GitHub
+git remote add origin https://github.com/usuario/repo.git
 git push -u origin main
 ```
 
-Se o repositório for privado e for usar SSH, use a URL SSH `git@github.com:usuario/repositorio.git`.
+#### 📥 **Projeto Existente**:
+```bash
+# Clonar repositório
+git clone https://github.com/usuario/repo.git
+cd repo
+
+# Configurar ambiente
+poetry install
+```
 
 ---
 
-## GitHub Actions — como funcionam
+## 🌿 Workflow com Branches
 
-- GitHub Actions executa pipelines definidas por arquivos YAML em `.github/workflows/` quando eventos acontecem (push, pull_request, schedule, etc).
-- Cada workflow tem *jobs* e cada job tem *steps*. Jobs rodam em *runners* (máquinas virtuais hospedadas pelo GitHub ou self-hosted).
-- Workflows podem usar *actions* (reutilizáveis) ou executar comandos diretamente.
+### 📊 **Estrutura de Branches**
 
-Estrutura mínima de um workflow:
+```mermaid
+graph LR
+    A[👤 feature/nova-func] --> B[🔧 dev]
+    B --> C[🚀 main]
 
+    D[👤 feature/bug-fix] --> B
+    E[👤 feature/docs] --> B
+
+    style C fill:#e8f5e8
+    style B fill:#fff3e0
+    style A fill:#e3f2fd
+```
+
+### 🔄 **Fluxo de Desenvolvimento**
+
+#### 1️⃣ **Criar Feature Branch**
+```bash
+# Atualizar main
+git checkout main
+git pull origin main
+
+# Criar nova branch
+git checkout -b feature/nova-funcionalidade
+
+# Trabalhar e commitar
+git add .
+git commit -m "feat: adiciona nova funcionalidade"
+
+# Enviar para GitHub
+git push -u origin feature/nova-funcionalidade
+```
+
+#### 2️⃣ **Criar Pull Request**
+```bash
+# Via GitHub CLI (se instalado)
+gh pr create --base dev --head feature/nova-funcionalidade \
+  --title "feat: Nova funcionalidade" \
+  --body "Descrição detalhada"
+
+# Ou via interface web do GitHub
+```
+
+#### 3️⃣ **Atualizar Branch**
+```bash
+# Se main foi atualizada
+git checkout main
+git pull origin main
+git checkout feature/nova-funcionalidade
+git merge main
+
+# Resolver conflitos se houver
+git add .
+git commit -m "merge: resolve conflicts with main"
+git push
+```
+
+---
+
+## 🤖 GitHub Actions (CI/CD)
+
+### 🔧 **Workflows Configurados**
+
+#### 🧪 **`ci.yml` — Pipeline Principal**
 ```yaml
 name: CI
 on: [push, pull_request]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry
-          poetry install
-      - name: Run tests
-        run: poetry run pytest -q
-```
-
----
-
-## Ajustes necessários para Actions funcionar neste projeto
-
-1. Certifique-se de que os workflows existam em `.github/workflows/` (no projeto já existem: `ci.yml`, `create-pr-dev-to-main.yml`, `push-create-pr.yml`).
-2. Se o workflow usar secrets (ex: AWS credentials, token para publicar), crie esses secrets no repositório GitHub:
-   - Vá em Settings → Secrets and variables → Actions → New repository secret
-   - Nomeie e cole o valor. (Ex: `PYPI_TOKEN`, `GITHUB_TOKEN` geralmente já é provido automaticamente para ações básicas)
-3. Se o workflow usar permissões especiais (ex: write access to PRs, actions), ajuste o `permissions` no workflow e em Settings → Actions → General.
-4. Se o workflow precisar de um token PAT (Personal Access Token) com escopos extras, crie no GitHub em Settings → Developer settings → Personal access tokens → Tokens (classic) e forneça o token como secret.
-
----
-
-## Tokens e Secrets — como criar
-
-### Criar um Personal Access Token (PAT)
-
-1. No GitHub (web): Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token.
-2. Selecione escopos necessários (por exemplo `repo` para acesso a repositórios privados, `workflow` para acionar workflows, `write:packages` para publicar pacotes).
-3. Copie o token gerado (ele aparece apenas uma vez) e adicione como secret no repositório.
-
-### Adicionar secret no repositório
-
-- Vá em Settings → Secrets and variables → Actions → New repository secret
-- Nome: `MY_PAT`
-- Valor: cole o token
-
-No workflow use o secret assim:
-
-```yaml
-- name: Checkout
-  uses: actions/checkout@v4
-  with:
-    token: ${{ secrets.MY_PAT }}
-```
-
----
-
-## Principais comandos Git (passo a passo para iniciantes)
-
-### Configurar seu usuário
-
-```powershell
-git config --global user.name "Seu Nome"
-git config --global user.email seu.email@example.com
-```
-
-### Fluxo comum de trabalho (branchs, commit, push)
-
-```powershell
-# criar nova branch
-git checkout -b feature/minha-tarefa
-# adicionar alterações
-git add .
-# commitar
-git commit -m "Implementa X"
-# enviar branch
-git push -u origin feature/minha-tarefa
-```
-
-### Atualizar branch com main
-
-```powershell
-git checkout main
-git pull origin main
-git checkout feature/minha-tarefa
-git merge main
-# resolver conflitos se houver
-```
-
-### Trabalhar com PRs (GitHub)
-
-- Faça push da branch, abra um Pull Request no GitHub, peça revisão, corrija comentários, faça merge.
-- Você pode também criar PRs via CLI (`gh`):
-
-```powershell
-gh pr create --base main --head feature/minha-tarefa --title "Minha PR" --body "Descrição"
-```
-
----
-
-## Como o CI/CD foi criado neste projeto (análise dos workflows)
-
-Este projeto inclui três workflows em `.github/workflows/`:
-
-1. `ci.yml` — workflow principal de CI.
-2. `push-create-pr.yml` — workflow que pode criar PRs automaticamente em determinados branches.
-3. `create-pr-dev-to-main.yml` — workflow que cria PRs de `dev` para `main` (provavelmente usado para automação de release/merge entre branches).
-
-Vou descrever resumidamente cada um (analise simplificada dos arquivos):
-
-### `ci.yml`
-- Eventos: executa em `push` e `pull_request`.
-- Etapas comuns:
-  - Checkout do código (`actions/checkout`).
-  - Setup do Python (`actions/setup-python`).
-  - Instalar dependências (Poetry) e executar `pytest`.
-  - Pode realizar lint, formatação e upload de cobertura.
-
-### `push-create-pr.yml` e `create-pr-dev-to-main.yml`
-- Provavelmente usam `peter-evans/create-pull-request` action ou ações customizadas para abrir PRs automaticamente quando certos eventos ocorrem.
-- Útil para automatizar sincronização entre branches ou criar PRs de release.
-
-> Observação: Para descrever exatamente o que cada workflow faz, abra os arquivos YAML. Abaixo há um resumo extraído automaticamente.
-
----
-
-## Exemplo: configurar um workflow básico para este projeto
-
-Arquivo: `.github/workflows/ci.yml` (exemplo simplificado)
-
-```yaml
-name: CI
-on:
-  push:
-    branches: [ main, feature/* ]
-  pull_request:
-    branches: [ main ]
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -296,35 +204,176 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.12'
-      - name: Install Poetry
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry
       - name: Install dependencies
-        run: poetry install
+        run: |
+          pip install poetry
+          poetry install
       - name: Run tests
-        run: poetry run pytest -q
+        run: poetry run pytest
+```
+
+#### 🔀 **`push-create-pr.yml` — PRs Automáticos**
+- **Trigger**: Push em `feature/**`, `test/**`
+- **Ação**: Cria PR automaticamente para `dev`
+
+#### 🚀 **`create-pr-dev-to-main.yml` — Deploy**
+- **Trigger**: Merge em `dev`
+- **Ação**: Cria PR `dev → main`
+
+---
+
+## 🔐 Tokens e Secrets
+
+### 🔑 **Personal Access Token (PAT)**
+
+#### 📝 **Criar Token**:
+1. **GitHub** → Settings → Developer settings
+2. **Personal access tokens** → Tokens (classic)
+3. **Generate new token** → Selecionar escopos:
+   - `repo` (repositórios privados)
+   - `workflow` (GitHub Actions)
+   - `write:packages` (publicar pacotes)
+
+#### ⚙️ **Configurar Secret**:
+1. **Repositório** → Settings → Secrets and variables → Actions
+2. **New repository secret**
+3. **Nome**: `GITHUB_TOKEN_CUSTOM`
+4. **Valor**: Colar o token
+
+#### 🔧 **Usar no Workflow**:
+```yaml
+- name: Checkout with token
+  uses: actions/checkout@v4
+  with:
+    token: ${{ secrets.GITHUB_TOKEN_CUSTOM }}
 ```
 
 ---
 
-## Dicas e problemas comuns
+## 📋 Comandos Essenciais
 
-- Lembre-se de adicionar secrets via Settings → Secrets.
-- Se um workflow precisa criar PRs programaticamente, um PAT com escopo `repo` pode ser necessário.
-- `GITHUB_TOKEN` é automaticamente injetado nos workflows; porém seu escopo é limitado — para operações que precisam de permissões extra (por exemplo, publicar em outro repositório), crie um PAT e use como secret.
-- Verifique `permissions` no topo do workflow YAML se você precisa de permissões de escrita para actions e tokens.
+### 🔍 **Status e Informações**
+```bash
+git status              # Status dos arquivos
+git log --oneline       # Histórico resumido
+git branch -a           # Listar todas as branches
+git remote -v           # Listar remotes
+```
+
+### 📁 **Trabalhando com Arquivos**
+```bash
+git add .               # Adicionar todos os arquivos
+git add arquivo.py      # Adicionar arquivo específico
+git commit -m "msg"     # Commitar com mensagem
+git commit --amend      # Alterar último commit
+```
+
+### 🌿 **Branches**
+```bash
+git branch nome         # Criar branch
+git checkout nome       # Trocar para branch
+git checkout -b nome    # Criar e trocar
+git merge origem        # Merge de outra branch
+git branch -d nome      # Deletar branch local
+```
+
+### 🔄 **Sincronização**
+```bash
+git fetch              # Buscar atualizações
+git pull               # Fetch + merge
+git push               # Enviar commits
+git push -u origin branch  # Primeira vez
+```
+
+### 🔄 **Desfazer Alterações**
+```bash
+git restore arquivo    # Descartar alterações
+git reset HEAD~1       # Desfazer último commit
+git revert <commit>    # Reverter commit específico
+```
 
 ---
 
-## Conclusão
+## 🛠️ Solução de Problemas
 
-Esta página explicou o que são os principais arquivos relacionados ao Git/GitHub, como criá-los e como configurar CI/CD com GitHub Actions. Se quiser, eu posso:
+### ❌ **Erro de Autenticação**
+```bash
+# Verificar remote
+git remote -v
 
-- Gerar exemplos visuais (capturas) se você colar saídas do terminal;
-- Criar um workflow de exemplo mais completo para este repositório (com lint, teste e publicação);
-- Adicionar instruções específicas para configurar `dependabot` ou `CODEOWNERS`.
+# Reconfigurar com token
+git remote set-url origin https://<token>@github.com/user/repo.git
+
+# Ou configurar credential helper
+git config --global credential.helper manager-core
+```
+
+### ❌ **Conflitos de Merge**
+```bash
+# Durante merge com conflitos
+git status              # Ver arquivos em conflito
+# Editar arquivos manualmente
+git add .               # Marcar como resolvido
+git commit -m "resolve conflicts"
+```
+
+### ❌ **Branch desatualizada**
+```bash
+# Atualizar branch com main
+git checkout main
+git pull origin main
+git checkout sua-branch
+git rebase main         # Ou git merge main
+```
+
+### ❌ **Commit acidental**
+```bash
+# Desfazer último commit (mantendo alterações)
+git reset --soft HEAD~1
+
+# Desfazer último commit (perdendo alterações)
+git reset --hard HEAD~1
+```
 
 ---
 
-Página criada: `docs/git.md`
+## 📚 Boas Práticas
+
+### 📝 **Mensagens de Commit**
+```bash
+# Formato: tipo(escopo): descrição
+git commit -m "feat(api): adiciona endpoint de usuários"
+git commit -m "fix(tests): corrige teste de validação"
+git commit -m "docs(readme): atualiza instruções de setup"
+
+# Tipos comuns:
+# feat: nova funcionalidade
+# fix: correção de bug
+# docs: documentação
+# style: formatação
+# refactor: refatoração
+# test: testes
+# chore: tarefas de manutenção
+```
+
+### 🌿 **Estratégia de Branches**
+- **`main`**: Código de produção
+- **`dev`**: Integração de features
+- **`feature/*`**: Desenvolvimento de funcionalidades
+- **`hotfix/*`**: Correções urgentes
+
+### 🔄 **Pull Requests**
+- ✅ **Título claro** e descritivo
+- ✅ **Descrição detalhada** do que foi alterado
+- ✅ **Testes** executando com sucesso
+- ✅ **Revisão** por pelo menos uma pessoa
+- ✅ **Branch atualizada** com main/dev
+
+---
+
+## 🔗 Próximos Passos
+
+- 🔍 **Configure Hooks**: [🔍 Pre-commit](precommit.md)
+- 🚀 **Configure CI**: [🚀 CI](ci.md)
+- 🧪 **Execute Testes**: [🧪 Tests](tests.md)
+- 📋 **Execute Pipeline**: [📋 Pipeline](pipeline.md)

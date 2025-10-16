@@ -16,6 +16,12 @@ nav:
       - Pyenv: pyenv.md
       - Pre-commit: precommit.md
       - Git: git.md
+  - Documentação do Código:
+      - Overview: codigo.md
+      - Main: main.md
+      - Extract: extract.md
+      - Transform: transform.md
+      - Load: load.md
 
 repo_name: "ulissesbomjardim/estrutura_workshop"
 repo_url: "https://github.com/ulissesbomjardim/estrutura_workshop"

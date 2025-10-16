@@ -1,135 +1,214 @@
-# Testes — explicação detalhada dos arquivos em `tests/` e como rodá-los
+# 🧪 Tests — Testes Automatizados
 
-Esta página documenta os testes existentes neste repositório, descreve para que cada teste serve, quais asserts são verificados, como rodar os testes localmente e como interpretar os resultados.
+Esta página documenta os testes existentes no projeto, explica como executá-los e interpretar os resultados.
 
 ---
 
-## Rodando os testes localmente
+## 🎯 Visão Geral dos Testes
 
-Recomendo usar Poetry para garantir que as dependências de teste estejam disponíveis:
+O projeto utiliza **pytest** para testes automatizados, garantindo:
 
-```powershell
-poetry install
+- ✅ **Qualidade do código**
+- ✅ **Funcionamento correto das funções**
+- ✅ **Prevenção de regressões**
+- ✅ **Cobertura de código**
+
+---
+
+## 🚀 Executando os Testes
+
+### ⚡ Execução Rápida:
+```bash
+# Usando task do Poetry (recomendado)
+poetry run task test
+```
+
+### 🔧 Execução Manual:
+```bash
+# Todos os testes (modo silencioso)
 poetry run pytest -q
+
+# Todos os testes (modo verboso)
+poetry run pytest -vv
+
+# Testes com cobertura
+poetry run pytest --cov=src
+
+# Teste específico
+poetry run pytest tests/test_transform.py -q
 ```
 
-- `-q` reduz a verbosidade. Remova para ver saída completa.
-- Para ver cobertura (se instalado/configurado):
+### 🔍 Comandos Úteis:
+```bash
+# Apenas testes que contêm "transform"
+poetry run pytest -k transform -q
 
-```powershell
-poetry run pytest --cov=src
+# Parar no primeiro erro
+poetry run pytest -x
+
+# Executar em paralelo (se instalado pytest-xdist)
+poetry run pytest -n auto
 ```
 
 ---
 
-## Estrutura da pasta `tests/`
+## 📁 Estrutura dos Testes
 
 ```
 tests/
-├─ test_transform.py    # testes para a função transform_data
-├─ test_load.py         # testes para a função load_to_excel
-└─ test_pipeline.py     # teste de integração/smoke test no script src/main.py
-```
-
-Abaixo descrevo cada arquivo de teste.
-
----
-
-### `tests/test_transform.py`
-
-Objetivo
-- Verificar o comportamento de `transform_data` (concatenação de DataFrames).
-
-Testes contidos
-- `test_concat_two_dataframes`: concatena dois DataFrames com mesmas colunas e compara resultado com `pd.concat`.
-- `test_single_dataframe_returns_same_dataframe`: garante que ao passar uma lista com único DataFrame o retorno é igual à concatenação de uma lista com esse mesmo DataFrame.
-- `test_empty_list_raises_value_error`: verifica se passar lista vazia lança `ValueError`.
-- `test_concat_different_columns_creates_union_and_fills_nan`: testa concatenação quando colunas diferem entre DataFrames (espera união de colunas e preenchimento com NaN onde necessário).
-
-Como os asserts funcionam
-- Usa `pandas.DataFrame.equals` para comparar DataFrames que verificam tanto valores quanto posições de colunas/nomes.
-- Para o caso com colunas diferentes, o teste compara `list(result.columns)` com `list(expected.columns)` e então `result.equals(expected)` para garantir igualdade estrutural.
-
-Dicas para depuração
-- Rode `pytest -k transform -q -vv` para rodar apenas os testes de transform.
-- Se a função mudar, atualize os testes para refletir o comportamento desejado (por exemplo, ordenação de colunas).
-
----
-
-### `tests/test_load.py`
-
-Objetivo
-- Validar que `load_to_excel` grava corretamente um DataFrame em `.xlsx`, cria diretórios faltantes e retorna a mensagem esperada.
-
-Testes contidos
-- `test_load_to_excel_creates_file_and_returns_message`:
-  - Cria um DataFrame de teste, chama `load_to_excel` com `tmp_path/out` e confirma que o arquivo existe e que a mensagem retornada é "arquivo xlsx salvo com sucesso".
-  - Lê o arquivo salvo com `pd.read_excel` e usa `pandas.testing.assert_frame_equal` para comparar com o DataFrame original.
-- `test_load_to_excel_creates_nested_dir_if_missing`:
-  - Usa `tmp_path` para apontar a um diretório que não existe (ex: `tmp_path/nested/dir`) e confirma que a função cria a pasta e salva o arquivo.
-
-Sobre `tmp_path`
-- `tmp_path` é uma fixture do pytest que fornece um diretório temporário isolado para o teste. Tudo dentro dele é removido ao final do teste.
-
-Dicas para depuração
-- Se o teste falhar ao salvar o arquivo, verifique permissões ou se o `openpyxl` está instalado.
-- Se a leitura do Excel retorna diferença, verifique se `df.to_excel` salvou índices ou tipos diferentes; o teste usa `reset_index(drop=True)` ao comparar para evitar diferenças de índice.
-
----
-
-### `tests/test_pipeline.py`
-
-Objetivo
-- Teste de integração leve que verifica se `src/main.py` chama as funções `extract_from_excel`, `transform_data` e `load_to_excel` com os argumentos corretos e imprime mensagens esperadas.
-
-Abordagem do teste
-- Usa `monkeypatch` para injetar módulos falsos (`pipeline.extract`, `pipeline.transform`, `pipeline.load`) no `sys.modules` e atribuir funções mock que registram chamadas em um dicionário `called`.
-- Executa `runpy.run_path("src/main.py", run_name="__main__")` para rodar o script como se fosse chamado diretamente.
-- Verifica que `called` contém chamadas com os parâmetros corretos (`data/input`, `data/output`, `dados_concatenados`) e que a saída impressa (`capsys`) contém as mensagens previstas.
-
-Por que usar mocks aqui?
-- Evita dependências de I/O (ler arquivos Excel reais) e torna o teste rápido e determinístico.
-
-Dicas para depuração
-- Se o teste falhar, verifique o que foi impresso em `capsys` e se as funções foram chamadas — o dicionário `called` é inspecionado.
-- Se a importação falhar, verifique caminhos e se os módulos foram corretamente colocados em `sys.modules`.
-
----
-
-## Interpretação dos resultados
-
-- `OK`/`PASSED`: todos os testes passaram.
-- `FAILED`: um ou mais testes falharam — o pytest mostrará uma stack trace e um resumo indicando quais asserts falharam e em quais linhas.
-
-Comandos úteis
-
-```powershell
-# rodar todos os testes
-poetry run pytest -q
-
-# rodar testes com saída detalhada
-poetry run pytest -vv
-
-# rodar testes de apenas um arquivo
-poetry run pytest tests/test_load.py -q
-
-# rodar apenas testes com palavra-chave
-poetry run pytest -k load -q
+├── 🧪 test_extract.py      # Testes do módulo de extração
+├── 🔄 test_transform.py    # Testes do módulo de transformação
+├── 📤 test_load.py         # Testes do módulo de carregamento
+└── 🔗 test_pipeline.py     # Teste de integração completa
 ```
 
 ---
 
-## Adicionando novos testes
+## 🔄 test_transform.py
 
-- Use fixtures do pytest (como `tmp_path`) para criar diretórios/arquivos temporários.
-- Para testar funções de transformação, crie DataFrames pequenos com `pd.DataFrame`.
-- Para testar I/O, prefira `tmp_path` para evitar poluir o repositório com artefatos.
+### 🎯 **Objetivo**: Validar a função `transform_data` (concatenação de DataFrames)
+
+### ✅ **Testes Incluídos**:
+
+#### 📊 `test_concat_two_dataframes`
+- **Verifica**: Concatenação de dois DataFrames com mesmas colunas
+- **Compara**: Resultado com `pd.concat` esperado
+
+#### 📋 `test_single_dataframe_returns_same_dataframe`
+- **Verifica**: Lista com único DataFrame retorna igual
+- **Garante**: Comportamento correto com entrada mínima
+
+#### ❌ `test_empty_list_raises_value_error`
+- **Verifica**: Lista vazia lança `ValueError`
+- **Valida**: Tratamento de erro adequado
+
+#### 🔀 `test_concat_different_columns_creates_union_and_fills_nan`
+- **Verifica**: Concatenação com colunas diferentes
+- **Valida**: União de colunas e preenchimento com NaN
+
+### 🔍 **Dicas de Depuração**:
+```bash
+# Executar apenas testes de transform
+poetry run pytest -k transform -vv
+```
 
 ---
 
-Página criada: `docs/tests.md`
+## 📤 test_load.py
 
-Se quiser, eu posso:
-- Adicionar `tests.md` ao `mkdocs.yml` nav;
-- Gerar exemplos de arquivos Excel usados nos testes e adicionar um script `scripts/generate_test_files.py`;
-- Adicionar instruções para executar testes isoladamente no CI (workflow `ci.yml`).
+### 🎯 **Objetivo**: Validar a função `load_to_excel` (salvamento em Excel)
+
+### ✅ **Testes Incluídos**:
+
+#### 💾 `test_load_to_excel_creates_file_and_returns_message`
+- **Verifica**: Arquivo é criado corretamente
+- **Valida**: Mensagem de sucesso retornada
+- **Compara**: Arquivo salvo vs DataFrame original
+
+#### 📁 `test_load_to_excel_creates_nested_dir_if_missing`
+- **Verifica**: Criação automática de diretórios
+- **Usa**: `tmp_path` para testes isolados
+
+### 🔧 **Sobre tmp_path**:
+- **Fixture do pytest** que cria diretório temporário
+- **Isolamento**: Cada teste tem seu próprio diretório
+- **Limpeza**: Removido automaticamente após o teste
+
+---
+
+## 📥 test_extract.py
+
+### 🎯 **Objetivo**: Validar a função `extract_from_excel` (leitura de Excel)
+
+### ✅ **Testes Incluídos**:
+- Leitura de arquivos Excel válidos
+- Tratamento de diretórios vazios
+- Validação do formato de retorno
+
+---
+
+## 🔗 test_pipeline.py
+
+### 🎯 **Objetivo**: Teste de integração do pipeline completo
+
+### 🎭 **Abordagem com Mocks**:
+- **Usa**: `monkeypatch` para injetar mocks
+- **Executa**: `src/main.py` completo via `runpy.run_path`
+- **Verifica**: Chamadas corretas para funções do pipeline
+- **Valida**: Saída impressa no console
+
+### 🔄 **Por que usar mocks?**:
+- ✅ **Velocidade**: Evita I/O real de arquivos
+- ✅ **Determinismo**: Resultados previsíveis
+- ✅ **Isolamento**: Testa apenas a lógica de orquestração
+
+---
+
+## 📊 Interpretando Resultados
+
+### ✅ **Sucesso**:
+```bash
+======================== 8 passed in 0.45s ========================
+```
+
+### ❌ **Falha**:
+```bash
+FAILED tests/test_transform.py::test_concat_two_dataframes - AssertionError
+```
+
+### 📈 **Com Cobertura**:
+```bash
+---------- coverage: platform win32, python 3.12.7 -----------
+Name                     Stmts   Miss  Cover
+--------------------------------------------
+src\main.py                 10      0   100%
+src\pipeline\extract.py     15      2    87%
+src\pipeline\load.py        12      0   100%
+src\pipeline\transform.py    8      0   100%
+--------------------------------------------
+TOTAL                       45      2    96%
+```
+
+---
+
+## 🛠️ Adicionando Novos Testes
+
+### 📋 **Boas Práticas**:
+
+#### 🔧 Use fixtures do pytest:
+```python
+def test_example(tmp_path):
+    # tmp_path cria diretório temporário
+    test_file = tmp_path / "test.xlsx"
+```
+
+#### 📊 Crie DataFrames pequenos:
+```python
+df = pd.DataFrame({"col1": [1, 2], "col2": ["a", "b"]})
+```
+
+#### ✅ Use asserts específicos:
+```python
+import pandas.testing as pdt
+pdt.assert_frame_equal(result, expected)
+```
+
+---
+
+## 🚀 Integração com CI/CD
+
+Os testes são executados automaticamente:
+
+- 🔄 **Em cada commit** (via GitHub Actions)
+- 📊 **Com relatório de cobertura** (Codecov)
+- ✅ **Antes de merge** (proteção de branch)
+
+Veja mais detalhes em [🚀 CI](ci.md).
+
+---
+
+## 🔗 Próximos Passos
+
+- 🚀 **Execute o Pipeline**: [📋 Pipeline](pipeline.md)
+- 💻 **Explore o Código**: [📖 Documentação do Código](codigo.md)
+- 🔧 **Configure CI**: [🚀 CI](ci.md)
