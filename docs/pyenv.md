@@ -1,184 +1,316 @@
-# pyenv (Windows PowerShell) — instalação e uso
+# 🐍 Pyenv — Gerenciamento de Versões Python
 
-Esta página mostra como instalar e usar o pyenv no Windows (via pyenv-win) e como integrá-lo com o Poetry. Inclui comandos passo a passo, exemplos de saída e lugares onde você pode colar screenshots/prints.
-
-Atenção: não consigo gerar imagens aqui — adicione suas capturas em `docs/images/` e então remova o texto `![...](docs/images/...)` e substitua pelos caminhos corretos.
+Esta página mostra como instalar e usar o pyenv para gerenciar múltiplas versões do Python e integrá-lo com o Poetry.
 
 ---
 
-## 1. Por que usar pyenv?
+## 🎯 Por que usar Pyenv?
 
-- Permite ter múltiplas versões do Python instaladas lado a lado.
-- Facilita garantir que o projeto use a versão exata especificada em `pyproject.toml`.
-- Muito útil para desenvolver e testar código em diferentes versões do Python.
+### ✅ **Benefícios**:
+- 🔄 **Múltiplas versões** do Python lado a lado
+- 🎯 **Versão exata** especificada no `pyproject.toml`
+- 🧪 **Teste** de código em diferentes versões
+- 🔒 **Isolamento** entre projetos
+- 🚀 **Troca rápida** entre versões
 
 ---
 
-## 2. Instalação no Windows (pyenv-win) — PowerShell
+## 💻 Instalação por Sistema Operacional
 
-Abra o PowerShell como usuário (não é necessário Administrador, mas necessário para alterar o perfil se quiser persistir variáveis de ambiente).
+### 🪟 Windows (pyenv-win)
 
-1) Clone o repositório pyenv-win:
-
+#### 📥 **1. Instalar via Git**
 ```powershell
-# Clona o pyenv-win para a pasta do usuário
+# Clone o repositório pyenv-win
 git clone https://github.com/pyenv-win/pyenv-win.git $HOME\.pyenv
 ```
 
-2) Adicione pyenv ao PATH no seu perfil do PowerShell (arquivo `$PROFILE`).
-
-- Abra o perfil (se não existir, o comando criará um arquivo):
-
+#### ⚙️ **2. Configurar PATH**
 ```powershell
+# Abrir perfil do PowerShell
 notepad $PROFILE
-```
 
-- Cole as linhas abaixo no arquivo e salve:
-
-```powershell
-# pyenv-win
+# Adicionar ao arquivo (copie e cole):
 $env:PYENV = "$HOME\.pyenv\pyenv-win\bin"
 $env:PATH = "$env:PYENV;$env:PATH"
 ```
 
-- Reabra o PowerShell para aplicar as mudanças (ou rode `& $PROFILE` para recarregar).
+#### 🔄 **3. Recarregar Terminal**
+```powershell
+# Recarregar perfil
+& $PROFILE
 
-3) Verifique a instalação:
+# OU reiniciar PowerShell
+```
 
+#### ✅ **4. Verificar Instalação**
 ```powershell
 pyenv --version
+# Saída esperada: pyenv 2.64.0 (ou versão mais recente)
 ```
-
-Exemplo de saída esperada (sua versão pode variar):
-
-```
-pyenv 2.64.0
-```
-
-(Adicione aqui um screenshot do PowerShell mostrando o comando `pyenv --version`.)
-
-Observação: coloque capturas em `docs/images/` e atualize o link acima para `images/pyenv-version.png` quando disponíveis.
 
 ---
 
-## 3. Instalar uma versão do Python com pyenv (exemplo 3.12.7)
+### 🍎 macOS
 
-```powershell
+```bash
+# Usando Homebrew (recomendado)
+brew install pyenv
+
+# Adicionar ao ~/.zshrc ou ~/.bash_profile
+echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+
+# Recarregar shell
+source ~/.zshrc
+```
+
+---
+
+### 🐧 Linux (Ubuntu/Debian)
+
+```bash
+# Instalar dependências
+sudo apt-get update
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git
+
+# Instalar pyenv
+curl https://pyenv.run | bash
+
+# Adicionar ao ~/.bashrc
+echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+
+# Recarregar shell
+source ~/.bashrc
+```
+
+---
+
+## 🚀 Usando o Pyenv
+
+### 📋 **Comandos Essenciais**
+
+#### 🔍 **Listar versões disponíveis**
+```bash
+pyenv install --list
+# Mostra todas as versões disponíveis para instalação
+```
+
+#### 📥 **Instalar versão específica**
+```bash
+# Instalar Python 3.12.7 (versão do projeto)
 pyenv install 3.12.7
 ```
 
-Dependendo da conexão e do sistema, o download e build podem levar alguns minutos. Após instalar, verifique:
-
-```powershell
+#### 📊 **Listar versões instaladas**
+```bash
 pyenv versions
+# Exemplo de saída:
+#   system
+# * 3.12.7 (set by /path/to/.python-version)
+#   3.11.4
+#   3.10.12
 ```
 
-Saída esperada (exemplo):
-
-```
-* 3.12.7 (set by C:\Users\seuuser\.pyenv\pyenv-win\version)
-  3.11.4
-  3.10.12
-```
-
-(Adicione captura de `pyenv versions` se quiser)
-
----
-
-## 4. Definir versão global e local
-
-- Definir global (padrão para todo o sistema):
-
-```powershell
+#### 🌍 **Definir versão global (sistema)**
+```bash
 pyenv global 3.12.7
 ```
 
-- Definir local (apenas para o diretório do projeto — cria `.python-version`):
-
-```powershell
-cd G:\dev\Jornada_de_dados\estrutura_workshop
+#### 📁 **Definir versão local (projeto)**
+```bash
+cd estrutura_workshop
 pyenv local 3.12.7
+# Cria arquivo .python-version
 ```
 
-Verifique a versão ativa:
-
-```powershell
+#### ✅ **Verificar versão ativa**
+```bash
 python --version
 # ou
 pyenv which python
 ```
 
-Exemplo de saída:
-
-```
-Python 3.12.7
-```
-
 ---
 
-## 5. Integrando pyenv com Poetry
+## 🔗 Integração com Poetry
 
-Depois de definir a versão local do Python com `pyenv local`, peça ao Poetry para usar essa versão quando criar/associar o ambiente:
+### ⚙️ **Configuração Recomendada**
 
-```powershell
-cd G:\dev\Jornada_de_dados\estrutura_workshop
-# Use o caminho do python fornecido por pyenv
-poetry env use (pyenv which python)
+#### 1️⃣ **Definir versão local do projeto**
+```bash
+cd estrutura_workshop
+pyenv local 3.12.7
 ```
 
-Observação para PowerShell: o comando `poetry env use (pyenv which python)` pode precisar de substituição pelo caminho completo retornado por `pyenv which python`. Exemplo:
+#### 2️⃣ **Configurar Poetry para usar pyenv**
+```bash
+# Opção 1: Usar versão atual
+poetry env use python
 
-```powershell
+# Opção 2: Usar caminho específico
+poetry env use $(pyenv which python)
+
+# Windows PowerShell:
 $py = pyenv which python
 poetry env use $py
 ```
 
-Se o Poetry já tiver criado um ambiente para outra versão e você quiser trocar:
+#### 3️⃣ **Verificar configuração**
+```bash
+poetry env info
+# Deve mostrar Python 3.12.7
+```
 
-```powershell
-poetry env list
-poetry env remove <nome-do-ambiente>
+#### 4️⃣ **Instalar dependências**
+```bash
 poetry install
 ```
 
-Após isso, rode os comandos usuais:
+---
 
-```powershell
+## 🔄 Workflow Típico
+
+### 📝 **Para Novo Projeto**
+```bash
+# 1. Navegar para diretório do projeto
+cd meu-projeto
+
+# 2. Definir versão Python
+pyenv local 3.12.7
+
+# 3. Configurar Poetry
+poetry env use python
 poetry install
-poetry run python src/main.py
+
+# 4. Ativar ambiente
+poetry shell
 ```
 
-(Adicione um screenshot do resultado de `poetry env use` e de `poetry run python src/main.py` se quiser)
+### 🔧 **Para Projeto Existente**
+```bash
+# 1. Clonar repositório
+git clone <repo-url>
+cd projeto
+
+# 2. Pyenv detecta versão automaticamente (.python-version)
+python --version
+
+# 3. Se necessário, instalar versão
+pyenv install 3.12.7
+
+# 4. Configurar Poetry
+poetry env use python
+poetry install
+```
 
 ---
 
-## 6. Local das capturas / sugestões de imagens
+## 🛠️ Solução de Problemas
 
-- Coloque capturas em `docs/images/`.
-- Referencie-as neste arquivo usando Markdown: `![descrição](images/nome.png)`.
+### ❌ **"pyenv: command not found"**
 
-Exemplo de imagens que ajudam:
+#### 🪟 **Windows**:
+```powershell
+# Verificar se PATH foi adicionado
+echo $env:PATH | Select-String "pyenv"
 
-- `images/pyenv-install.png` — saída do `git clone` e do PATH sendo adicionado.
-- `images/pyenv-install-version.png` — `pyenv install 3.12.7` em execução.
-- `images/pyenv-versions.png` — saída de `pyenv versions`.
-- `images/poetry-env-use.png` — saída do `poetry env use` mostrando o ambiente criado.
+# Recarregar perfil
+& $PROFILE
 
----
+# Verificar se diretório existe
+Test-Path "$HOME\.pyenv\pyenv-win\bin"
+```
 
-## 7. Problemas comuns e soluções (Windows)
+#### 🍎 **macOS/Linux**:
+```bash
+# Verificar instalação
+which pyenv
 
-- Erro: `pyenv: command not found` — verifique se você adicionou `$HOME\.pyenv\pyenv-win\bin` ao PATH e reabriu o PowerShell.
-- Erro: falha no `pyenv install` — pode faltar dependências do build; verifique logs e considere instalar o instalador do Windows Python em vez de compilar.
-- Erro: Poetry não usa a versão correta — verifique `pyenv which python` e use o caminho absoluto com `poetry env use`.
-
----
-
-## 8. Próximos passos
-
-- Depois de ter o pyenv e Poetry configurados, rode `poetry install` e `poetry run mkdocs serve` para visualizar a documentação local.
-- Se quiser, posso criar as imagens a partir do terminal (se você me enviar as saídas) ou posso adicionar instruções mais detalhadas para resolver erros de build do `pyenv install` no Windows.
+# Recarregar shell config
+source ~/.zshrc  # ou ~/.bashrc
+```
 
 ---
 
-Página criada: `docs/pyenv.md` — edite e adicione imagens em `docs/images/` conforme desejar.
+### ❌ **Falha no "pyenv install"**
+
+#### 🪟 **Windows**:
+- **Problema**: Falha no download/compilação
+- **Solução**: Usar instalador oficial do Python
+
+#### 🐧 **Linux**:
+```bash
+# Instalar dependências em falta
+sudo apt-get install -y build-essential libssl-dev zlib1g-dev
+```
+
+---
+
+### ❌ **Poetry não usa versão correta**
+
+```bash
+# Verificar versão atual
+pyenv which python
+python --version
+
+# Forçar Poetry a usar versão específica
+poetry env remove python  # Remove ambiente existente
+poetry env use $(pyenv which python)
+poetry install
+```
+
+---
+
+### ❌ **Arquivo .python-version ignorado**
+
+```bash
+# Verificar se arquivo existe
+cat .python-version
+
+# Verificar se pyenv está detectando
+pyenv version
+
+# Se necessário, recriar
+pyenv local 3.12.7
+```
+
+---
+
+## 📊 Comandos de Referência
+
+### 🔍 **Informações**
+```bash
+pyenv --version          # Versão do pyenv
+pyenv versions           # Versões instaladas
+pyenv which python       # Caminho do Python ativo
+pyenv root              # Diretório de instalação
+```
+
+### 🎯 **Versões**
+```bash
+pyenv install --list    # Versões disponíveis
+pyenv install 3.12.7    # Instalar versão
+pyenv uninstall 3.11.0  # Desinstalar versão
+```
+
+### ⚙️ **Configuração**
+```bash
+pyenv global 3.12.7     # Versão global
+pyenv local 3.12.7      # Versão local (projeto)
+pyenv shell 3.11.0      # Versão temporária (sessão)
+```
+
+---
+
+## 🔗 Próximos Passos
+
+Agora que o Pyenv está configurado:
+
+- ⚙️ **Configure o Projeto**: [⚙️ Setup](setup.md)
+- 🚀 **Execute o Pipeline**: [📋 Pipeline](pipeline.md)
+- 🧪 **Execute os Testes**: [🧪 Tests](tests.md)
+- 🔍 **Configure Pre-commit**: [🔍 Pre-commit](precommit.md)

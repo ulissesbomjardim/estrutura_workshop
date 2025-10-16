@@ -1,35 +1,23 @@
-# Pre-commit — como funciona e como usar neste projeto
+# 🔍 Pre-commit — Hooks de Qualidade
 
-Esta página explica o arquivo `.pre-commit-config.yaml` do projeto, o que cada hook faz, como testar hooks localmente, como configurar o pre-commit para trabalhar com Poetry e como usar as tasks definidas em `pyproject.toml` (format, test, run).
-
----
-
-## Índice
-
-- O que é pre-commit?
-- Analisando `.pre-commit-config.yaml` deste projeto
-- O que faz cada hook (black, isort, end-of-file-fixer, trailing-whitespace)
-- Como instalar e ativar o pre-commit (com Poetry)
-- Como rodar os hooks manualmente (antes do commit)
-- Como validar se o commit será aceito (testar hooks localmente)
-- O que é o `black` e por que usamos no pre-commit
-- Como formatar o código com `isort` + `black`
-- Como ativar o venv do Poetry e rodar `task format`, `task test` e `task run`
-- Dicas e problemas comuns
+Esta página explica como o pre-commit funciona no projeto, garantindo qualidade e consistência do código antes de cada commit.
 
 ---
 
-## O que é pre-commit?
+## 🎯 O que é Pre-commit?
 
-`pre-commit` é uma ferramenta que facilita executar verificações (linters, formatadores, testes rápidos) antes que um commit seja criado. Isso garante que o código que entra no repositório siga padrões comuns (formatação, ordens de imports, remoção de espaços finais, etc.).
+O **pre-commit** é uma ferramenta que executa verificações automáticas antes de cada commit:
 
-Quando configurado, o `pre-commit` instala ganchos (hooks) no Git que são executados automaticamente antes de um `git commit`.
+- ✅ **Formatação** consistente do código
+- 🔍 **Verificações** de qualidade
+- 🧹 **Limpeza** automática de arquivos
+- 🚫 **Previne** commits com problemas
 
 ---
 
-## Analisando `.pre-commit-config.yaml` deste projeto
+## ⚙️ Configuração do Projeto
 
-O conteúdo do arquivo no projeto é:
+### 📄 Arquivo `.pre-commit-config.yaml`
 
 ```yaml
 repos:
@@ -53,143 +41,301 @@ repos:
       - id: trailing-whitespace
 ```
 
-Resumidamente, estamos usando 4 hooks principais:
+---
 
-- `black` (formatador de código)
-- `isort` (organizador de imports)
-- `end-of-file-fixer` (insere nova linha final se estiver faltando)
-- `trailing-whitespace` (remove espaços no final das linhas)
+## 🛠️ Hooks Configurados
 
-A opção `language_version` indica qual versão do Python usar para rodar o hook (aqui, `python3.12`).
+### 🎨 **Black** - Formatador de Código
+- **Função**: Formata código Python automaticamente
+- **Configuração**: `line-length = 88`, `target-version = py312`
+- **Benefício**: Código consistente, sem discussões sobre estilo
+
+### 📋 **isort** - Organizador de Imports
+- **Função**: Organiza e agrupa imports
+- **Ordem**: Standard library → Third party → Local
+- **Benefício**: Imports limpos e organizados
+
+### 📄 **end-of-file-fixer** - Corretor de Final de Arquivo
+- **Função**: Garante nova linha no final dos arquivos
+- **Benefício**: Compatibilidade com ferramentas Unix
+
+### 🧹 **trailing-whitespace** - Removedor de Espaços
+- **Função**: Remove espaços desnecessários no final das linhas
+- **Benefício**: Arquivos limpos, diffs menores
 
 ---
 
-## O que faz cada hook
+## 🚀 Instalação e Configuração
 
-- black: formata automaticamente o código Python conforme regras do projeto (`target-version` e `line-length` configuradas em `pyproject.toml`).
-- isort: ordena e agrupa import statements de maneira consistente (ex.: imports padrão, de terceiros e locais separados por linhas vazias).
-- end-of-file-fixer: garante que os arquivos terminem com uma nova linha (LF).
-- trailing-whitespace: remove espaços desnecessários ao final das linhas.
-
-Esses hooks juntos garantem que o código entregue siga um estilo comum e evite erros de formatação.
-
----
-
-## Como instalar e ativar o pre-commit (com Poetry)
-
-1. Instale pre-commit (como dependência de desenvolvimento) — se não estiver no `pyproject.toml`:
-
-```powershell
-poetry add --dev pre-commit
+### 📦 **1. Instalar Pre-commit**
+```bash
+# Pre-commit já está nas dependências do projeto
+poetry install
 ```
 
-2. Instale os hooks localmente (apenas precisa ser feito uma vez por clone):
-
-```powershell
+### ⚙️ **2. Ativar Hooks no Git**
+```bash
+# Instalar hooks localmente (uma vez por clone)
 poetry run pre-commit install
 ```
 
-Isso criará um hook Git na pasta `.git/hooks/pre-commit` que executa os verificadores antes do commit.
+### ✅ **3. Verificar Instalação**
+```bash
+# Testar se está funcionando
+poetry run pre-commit --version
+```
 
 ---
 
-## Como rodar os hooks manualmente (antes do commit)
+## 🔧 Usando Pre-commit
 
-Você pode rodar todos os hooks contra todos os arquivos (útil em CI ou para verificar tudo):
+### 🤖 **Execução Automática**
 
-```powershell
+Os hooks executam automaticamente a cada `git commit`:
+
+```bash
+git add .
+git commit -m "feat: nova funcionalidade"
+
+# Output:
+black....................................................................Passed
+isort....................................................................Passed
+fix end of files.....................................................Passed
+trim trailing whitespace.............................................Passed
+[main abc1234] feat: nova funcionalidade
+```
+
+### 🛠️ **Execução Manual**
+
+#### 🔍 **Todos os hooks, todos os arquivos**
+```bash
 poetry run pre-commit run --all-files
 ```
 
-Ou rodar apenas um hook específico:
-
-```powershell
+#### 🎯 **Hook específico**
+```bash
+# Apenas Black
 poetry run pre-commit run black --all-files
+
+# Apenas isort
+poetry run pre-commit run isort --all-files
 ```
 
-Se algum hook fizer correção automática (black, isort), ele modificará os arquivos. Depois de alterações, volte a adicionar/commitar os arquivos:
+#### 📁 **Arquivos específicos**
+```bash
+# Apenas arquivos staged
+poetry run pre-commit run
 
-```powershell
+# Arquivo específico
+poetry run pre-commit run --files src/main.py
+```
+
+---
+
+## 🎨 Formatação de Código
+
+### ⚡ **Task de Formatação (Recomendada)**
+```bash
+# Usando task do Poetry
+poetry run task format
+```
+
+### 🔧 **Comandos Individuais**
+```bash
+# isort + black manualmente
+poetry run isort .
+poetry run black .
+
+# Verificar apenas (sem alterar)
+poetry run black --check .
+poetry run isort --check .
+```
+
+### 🐚 **Com Shell Ativado**
+```bash
+# Ativar ambiente
+poetry shell
+
+# Executar formatação
+task format
+
+# Ou comandos individuais
+isort .
+black .
+```
+
+---
+
+## 🔄 Fluxo de Trabalho
+
+### 📝 **Desenvolvimento Normal**
+
+```mermaid
+graph LR
+    A[✏️ Editar Código] --> B[📁 git add]
+    B --> C[💾 git commit]
+    C --> D{🔍 Pre-commit}
+    D -->|✅ Pass| E[✅ Commit OK]
+    D -->|❌ Fail| F[🔧 Correções]
+    F --> G[📁 git add]
+    G --> C
+
+    style E fill:#e8f5e8
+    style F fill:#ffebee
+```
+
+### 🛠️ **Quando Hooks Fazem Correções**
+
+```bash
+# 1. Fazer commit
+git commit -m "nova feature"
+
+# 2. Se hooks corrigiram arquivos:
+black....................................................................Failed
+- hook id: black
+- files were modified by this hook
+
+# 3. Adicionar correções e commitar novamente
 git add .
-git commit -m "Formata código"
+git commit -m "nova feature"
 ```
 
 ---
 
-## Como validar se o commit vai ser aceito (testar hooks localmente)
+## 🧪 Validação e Teste
 
-Use `pre-commit run --all-files` para verificar todos os arquivos. Se todos passarem, o commit é provável que funcione.
+### ✅ **Verificar se Commit Passará**
+```bash
+# Testar todos os hooks antes de commitar
+poetry run pre-commit run --all-files
+```
 
-No fluxo normal, o pre-commit será executado automaticamente ao rodar `git commit`. Se algum hook falhar (ex.: black alterou arquivos), o commit será abortado e você deverá revisar/adicionar/commit novamente.
+### 🔍 **Debug de Problemas**
+```bash
+# Verbose mode para mais detalhes
+poetry run pre-commit run --all-files --verbose
+
+# Hook específico com debug
+poetry run pre-commit run black --all-files --verbose
+```
+
+### 📊 **Status dos Hooks**
+```bash
+# Listar hooks instalados
+poetry run pre-commit hooks
+
+# Informações sobre configuração
+poetry run pre-commit sample-config
+```
 
 ---
 
-## O que é o `black` e por que usamos no pre-commit
+## 🛠️ Solução de Problemas
 
-`black` é um formatador de código opinativo. Ele aplica um estilo consistente automaticamente, evitando discussões sobre formatação. Usamos no pre-commit para garantir que todo o código no repositório esteja formatado automaticamente e de maneira consistente.
+### ❌ **"pre-commit command not found"**
+```bash
+# Instalar dependências
+poetry install
 
-No `pyproject.toml` há uma seção `[tool.black]` com `line-length = 88` e `target-version = ["py312"]` — o pre-commit usa essas configurações.
+# Verificar se pre-commit está disponível
+poetry run pre-commit --version
+```
+
+### ❌ **Hooks não executam automaticamente**
+```bash
+# Reinstalar hooks
+poetry run pre-commit uninstall
+poetry run pre-commit install
+```
+
+### ❌ **Black/isort não encontrados**
+```bash
+# Atualizar hooks
+poetry run pre-commit autoupdate
+
+# Limpar cache
+poetry run pre-commit clean
+```
+
+### ❌ **Erro de versão do Python**
+```bash
+# Verificar versão no .pre-commit-config.yaml
+# Deve corresponder à versão do projeto (python3.12)
+
+# Atualizar versão se necessário
+poetry run pre-commit autoupdate
+```
 
 ---
 
-## Como formatar o código com `isort` + `black`
+## ⚙️ Personalização
 
-O projeto já possui uma task (Taskipy) chamada `format` em `pyproject.toml`:
-
+### 🔧 **Configurar Black (pyproject.toml)**
 ```toml
-[tool.taskipy.tasks]
-format = "isort . && black ."
+[tool.black]
+line-length = 88
+target-version = ["py312"]
 ```
 
-Para executar a task format com Poetry, você pode:
-
-```powershell
-poetry run task format
-# ou
-poetry run taskipy format
+### 📋 **Configurar isort (pyproject.toml)**
+```toml
+[tool.isort]
+profile = "black"
+multi_line_output = 3
 ```
 
-Se você prefere ativar o shell do Poetry e executar direto:
+### ➕ **Adicionar Novos Hooks**
 
-```powershell
-poetry shell
-poetry run task format
+Edite `.pre-commit-config.yaml`:
+```yaml
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
 ```
 
 ---
 
-## Como ativar o venv do Poetry e rodar `task format`, `task test` e `task run`
+## 🔗 Integração com CI
 
-1. Ativar shell do Poetry (mantém o ambiente ativo):
+Os mesmos hooks executam no GitHub Actions:
 
-```powershell
-cd G:\dev\Jornada_de_dados\estrutura_workshop
-poetry shell
+```yaml
+# .github/workflows/ci.yml
+- name: Check formatting
+  run: poetry run black --check .
+
+- name: Check imports
+  run: poetry run isort --check .
 ```
 
-2. Rodar tasks definidas em `pyproject.toml`:
-
-```powershell
-# format: isort + black
-poetry run task format
-
-# test: pytest com cobertura
-poetry run task test
-
-# run: executa o script principal
-poetry run task run
-```
-
-Observação: em alguns setups a task runner pode ser `task` (Taskipy) ou `taskipy`. Se `poetry run task` não funcionar, tente `poetry run taskipy format`.
+Veja mais detalhes em [🚀 CI](ci.md).
 
 ---
 
-## Dicas e problemas comuns
+## 📚 Tasks do Projeto
 
-- Se `pre-commit` reclamar de `black`/`isort` não encontrados, instale `pre-commit` e hooks nas dependências de desenvolvimento do projeto e rode `pre-commit install`.
-- Caso `poetry run task format` falhe, verifique se `taskipy` está disponível (instale como dependência dev se necessário).
-- Para aplicar as correções do black automaticamente em todos os arquivos, rode `poetry run pre-commit run black --all-files`.
+O projeto define tasks úteis no `pyproject.toml`:
+
+```bash
+# Formatação completa
+poetry run task format    # isort + black
+
+# Executar testes
+poetry run task test      # pytest com cobertura
+
+# Executar pipeline
+poetry run task run       # python src/main.py
+
+# Documentação
+poetry run task doc       # mkdocs serve
+```
 
 ---
 
-Página criada: `docs/precommit.md` — revise e me diga se quer mais exemplos ou imagens.
+## 🔗 Próximos Passos
+
+- 📂 **Configure Git**: [📂 Git](git.md)
+- 🚀 **Configure CI**: [🚀 CI](ci.md)
+- 🧪 **Execute Testes**: [🧪 Tests](tests.md)
+- 🚀 **Execute Pipeline**: [📋 Pipeline](pipeline.md)
