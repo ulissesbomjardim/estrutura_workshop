@@ -1,0 +1,1793 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../codigo/">
+      
+      
+        <link rel="next" href="../extract/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Main - Estrutura Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#main-modulo-principal" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Estrutura Workshop" class="md-header__button md-logo" aria-label="Estrutura Workshop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Estrutura Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Main
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ulissesbomjardim/estrutura_workshop" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ulissesbomjardim/estrutura_workshop
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Estrutura Workshop" class="md-nav__button md-logo" aria-label="Estrutura Workshop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Estrutura Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ulissesbomjardim/estrutura_workshop" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ulissesbomjardim/estrutura_workshop
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Configuração do Ambiente
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Configuração do Ambiente
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pyenv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pyenv
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../precommit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pre-commit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Documentação do Código
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Documentação do Código
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Main
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Main
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Visão Geral
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Funcionalidades
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Funcionalidades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capacidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Capacidades:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Performance:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentacao-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 Documentação da API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 Documentação da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funcao-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Função Principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#src.main.main" class="md-nav__link">
+    <span class="md-ellipsis">
+      main
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigo-fonte-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 Código Fonte Completo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Fluxo de Execução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-e-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração e Parâmetros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuração e Parâmetros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caminhos-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Caminhos de Dados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#personalizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Personalização
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoramento-e-debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Monitoramento e Debug
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Monitoramento e Debug">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#informacoes-de-debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Informações de Debug
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 Métricas de Performance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tratamento-de-erros" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Tratamento de Erros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Tratamento de Erros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#versao-robusta" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Versão Robusta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formas-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Formas de Execução
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Formas de Execução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#execucao-padrao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Execução Padrão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execucao-customizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Execução Customizada
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saida-esperada" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Saída Esperada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Saída Esperada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#execucao-bem-sucedida" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Execução Bem-sucedida
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Interpretação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-incluidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Testes Incluídos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executar-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Executar Testes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensoes-possiveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Extensões Possíveis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Extensões Possíveis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configuração Externa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extract
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../load/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Visão Geral
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Funcionalidades
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Funcionalidades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capacidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Capacidades:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Performance:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentacao-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 Documentação da API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 Documentação da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funcao-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Função Principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#src.main.main" class="md-nav__link">
+    <span class="md-ellipsis">
+      main
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigo-fonte-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 Código Fonte Completo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Fluxo de Execução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-e-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração e Parâmetros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuração e Parâmetros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caminhos-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Caminhos de Dados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#personalizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Personalização
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoramento-e-debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Monitoramento e Debug
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Monitoramento e Debug">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#informacoes-de-debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Informações de Debug
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 Métricas de Performance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tratamento-de-erros" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Tratamento de Erros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Tratamento de Erros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#versao-robusta" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Versão Robusta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formas-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Formas de Execução
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Formas de Execução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#execucao-padrao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Execução Padrão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execucao-customizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Execução Customizada
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saida-esperada" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Saída Esperada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Saída Esperada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#execucao-bem-sucedida" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Execução Bem-sucedida
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Interpretação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-incluidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Testes Incluídos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executar-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Executar Testes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensoes-possiveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Extensões Possíveis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Extensões Possíveis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configuração Externa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="main-modulo-principal">🎯 Main — Módulo Principal</h1>
+<p>Este é o módulo principal que orquestra todo o pipeline ETL do projeto, coordenando a execução das três etapas fundamentais.</p>
+<hr />
+<h2 id="visao-geral">🎯 Visão Geral</h2>
+<p>O módulo <code>main.py</code> é o <strong>ponto de entrada</strong> do pipeline ETL, responsável por:</p>
+<ul>
+<li>🎼 <strong>Orquestrar</strong> todo o fluxo de dados</li>
+<li>📥 <strong>Coordenar</strong> a extração de dados</li>
+<li>⚙️ <strong>Gerenciar</strong> a transformação</li>
+<li>📤 <strong>Controlar</strong> o carregamento</li>
+<li>📊 <strong>Monitorar</strong> o progresso</li>
+</ul>
+<hr />
+<h2 id="funcionalidades">🔧 Funcionalidades</h2>
+<h3 id="capacidades">✅ <strong>Capacidades</strong>:</h3>
+<ul>
+<li>🎼 Orquestração completa do pipeline</li>
+<li>📋 Configuração centralizadas de caminhos</li>
+<li>📊 Monitoramento de tipos de dados</li>
+<li>✅ Feedback visual do progresso</li>
+</ul>
+<h3 id="performance">⚡ <strong>Performance</strong>:</h3>
+<ul>
+<li>🚀 Execução sequencial otimizada</li>
+<li>💾 Gestão eficiente de memória</li>
+<li>🔄 Processamento em lote</li>
+</ul>
+<hr />
+<h2 id="documentacao-da-api">📖 Documentação da API</h2>
+<h3 id="funcao-principal">🎯 <strong>Função Principal</strong></h3>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="src.main.main"></a>
+    <div class="doc doc-contents first">
+
+
+            <details class="quote">
+              <summary>Source code in <code>src/main.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">input_path</span> <span class="o">=</span> <span class="s2">&quot;data/input&quot;</span>
+    <span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;data/output&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;dados_concatenados&quot;</span>
+
+    <span class="n">data_list</span> <span class="o">=</span> <span class="n">extract_from_excel</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data_list</span><span class="p">))</span>
+
+    <span class="n">data_frame</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data_frame</span><span class="p">))</span>
+
+    <span class="n">message</span> <span class="o">=</span> <span class="n">load_to_excel</span><span class="p">(</span><span class="n">data_frame</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><hr />
+<h2 id="codigo-fonte-completo">💻 Código Fonte Completo</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pipeline.extract</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_from_excel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pipeline.load</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_to_excel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pipeline.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">transform_data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">input_path</span> <span class="o">=</span> <span class="s2">&quot;data/input&quot;</span>
+    <span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;data/output&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;dados_concatenados&quot;</span>
+
+    <span class="n">data_list</span> <span class="o">=</span> <span class="n">extract_from_excel</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data_list</span><span class="p">))</span>
+
+    <span class="n">data_frame</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data_frame</span><span class="p">))</span>
+
+    <span class="n">message</span> <span class="o">=</span> <span class="n">load_to_excel</span><span class="p">(</span><span class="n">data_frame</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h2 id="fluxo-de-execucao">🔄 Fluxo de Execução</h2>
+<pre class="mermaid"><code>graph LR
+    A[🚀 Iniciar] --&gt; B[📁 Configurar Caminhos]
+    B --&gt; C[📥 Extract]
+    C --&gt; D[📊 Verificar Tipos]
+    D --&gt; E[⚙️ Transform]
+    E --&gt; F[📊 Verificar Tipos]
+    F --&gt; G[📤 Load]
+    G --&gt; H[✅ Confirmar Sucesso]
+    H --&gt; I[🏁 Finalizar]
+
+    style A fill:#e3f2fd
+    style C fill:#f3e5f5
+    style E fill:#fff3e0
+    style G fill:#e8f5e8
+    style I fill:#e8f5e8</code></pre>
+<hr />
+<h2 id="configuracao-e-parametros">⚙️ Configuração e Parâmetros</h2>
+<h3 id="caminhos-de-dados">📁 <strong>Caminhos de Dados</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Configurações centralizadas</span>
+<span class="n">input_path</span> <span class="o">=</span> <span class="s2">&quot;data/input&quot;</span>      <span class="c1"># 📥 Dados de entrada</span>
+<span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;data/output&quot;</span>    <span class="c1"># 📤 Dados de saída</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;dados_concatenados&quot;</span> <span class="c1"># 🏷️ Nome do arquivo final</span>
+</code></pre></div>
+<h3 id="personalizacao">🔧 <strong>Personalização</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">main_customized</span><span class="p">(</span><span class="n">input_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;data/input&quot;</span><span class="p">,</span>
+                   <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;data/output&quot;</span><span class="p">,</span>
+                   <span class="n">output_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;resultado&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Versão customizável da função main&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📥 Extraindo de: </span><span class="si">{</span><span class="n">input_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">data_list</span> <span class="o">=</span> <span class="n">extract_from_excel</span><span class="p">(</span><span class="n">input_dir</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Extraídos </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span><span class="si">}</span><span class="s2"> arquivos&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚙️ Transformando dados...&quot;</span><span class="p">)</span>
+    <span class="n">data_frame</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Dados consolidados: </span><span class="si">{</span><span class="n">data_frame</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📤 Salvando em: </span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">output_name</span><span class="si">}</span><span class="s2">.xlsx&quot;</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">load_to_excel</span><span class="p">(</span><span class="n">data_frame</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">output_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="monitoramento-e-debug">📊 Monitoramento e Debug</h2>
+<h3 id="informacoes-de-debug">🔍 <strong>Informações de Debug</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">main_verbose</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Versão com informações detalhadas&quot;&quot;&quot;</span>
+
+    <span class="n">input_path</span> <span class="o">=</span> <span class="s2">&quot;data/input&quot;</span>
+    <span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;data/output&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;dados_concatenados&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🚀 Iniciando pipeline ETL...&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Extract</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📥 Fase 1: Extração&quot;</span><span class="p">)</span>
+    <span class="n">data_list</span> <span class="o">=</span> <span class="n">extract_from_excel</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   📊 Tipo: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   📋 Arquivos: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_list</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   📄 Arquivo </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Transform</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚙️ Fase 2: Transformação&quot;</span><span class="p">)</span>
+    <span class="n">data_frame</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   📊 Tipo: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data_frame</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   📐 Shape: </span><span class="si">{</span><span class="n">data_frame</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   🏷️ Colunas: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">data_frame</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Load</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📤 Fase 3: Carregamento&quot;</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">load_to_excel</span><span class="p">(</span><span class="n">data_frame</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   ✅ </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🏁 Pipeline concluído com sucesso!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="metricas-de-performance">📈 <strong>Métricas de Performance</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main_with_metrics</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Versão com métricas de performance&quot;&quot;&quot;</span>
+
+    <span class="n">metrics</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="n">input_path</span> <span class="o">=</span> <span class="s2">&quot;data/input&quot;</span>
+    <span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;data/output&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;dados_concatenados&quot;</span>
+
+    <span class="c1"># Extract</span>
+    <span class="n">extract_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">data_list</span> <span class="o">=</span> <span class="n">extract_from_excel</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span>
+    <span class="n">extract_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">extract_start</span>
+    <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;extract_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_time</span>
+    <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;files_processed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+
+    <span class="c1"># Transform</span>
+    <span class="n">transform_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">data_frame</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+    <span class="n">transform_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">transform_start</span>
+    <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;transform_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transform_time</span>
+    <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;final_rows&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_frame</span><span class="p">)</span>
+    <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;final_columns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_frame</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="c1"># Load</span>
+    <span class="n">load_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">load_to_excel</span><span class="p">(</span><span class="n">data_frame</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">load_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">load_start</span>
+    <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;load_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">load_time</span>
+
+    <span class="c1"># Total</span>
+    <span class="n">total_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+    <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;total_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_time</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 Métricas de Performance:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   📥 Extração: </span><span class="si">{</span><span class="n">extract_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   ⚙️ Transformação: </span><span class="si">{</span><span class="n">transform_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   📤 Carregamento: </span><span class="si">{</span><span class="n">load_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   🕐 Total: </span><span class="si">{</span><span class="n">total_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">metrics</span>
+</code></pre></div>
+<hr />
+<h2 id="tratamento-de-erros">🛠️ Tratamento de Erros</h2>
+<h3 id="versao-robusta">🔧 <strong>Versão Robusta</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">main_robust</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Versão com tratamento de erros&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">input_path</span> <span class="o">=</span> <span class="s2">&quot;data/input&quot;</span>
+        <span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;data/output&quot;</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;dados_concatenados&quot;</span>
+
+        <span class="c1"># Extract</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📥 Extraindo dados...&quot;</span><span class="p">)</span>
+        <span class="n">data_list</span> <span class="o">=</span> <span class="n">extract_from_excel</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data_list</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Nenhum arquivo encontrado para processar&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span><span class="si">}</span><span class="s2"> arquivos extraídos&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Transform</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚙️ Transformando dados...&quot;</span><span class="p">)</span>
+        <span class="n">data_frame</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Dados consolidados: </span><span class="si">{</span><span class="n">data_frame</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Load</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📤 Salvando resultado...&quot;</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">load_to_excel</span><span class="p">(</span><span class="n">data_frame</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Arquivo não encontrado: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Erro de dados: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Erro inesperado: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</code></pre></div>
+<hr />
+<h2 id="formas-de-execucao">🚀 Formas de Execução</h2>
+<h3 id="execucao-padrao">⚡ <strong>Execução Padrão</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Via Poetry (recomendado)</span>
+poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>src/main.py
+
+<span class="c1"># Via task</span>
+poetry<span class="w"> </span>run<span class="w"> </span>task<span class="w"> </span>run
+
+<span class="c1"># Com shell ativo</span>
+poetry<span class="w"> </span>shell
+python<span class="w"> </span>src/main.py
+</code></pre></div>
+<h3 id="execucao-customizada">🔧 <strong>Execução Customizada</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Em um script ou notebook</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span>
+
+<span class="c1"># Execução normal</span>
+<span class="n">main</span><span class="p">()</span>
+
+<span class="c1"># Ou importar e executar partes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.pipeline.extract</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_from_excel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.pipeline.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">transform_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.pipeline.load</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_to_excel</span>
+
+<span class="c1"># Execução manual das etapas</span>
+<span class="n">data_list</span> <span class="o">=</span> <span class="n">extract_from_excel</span><span class="p">(</span><span class="s2">&quot;data/input&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+<span class="n">load_to_excel</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;data/output&quot;</span><span class="p">,</span> <span class="s2">&quot;meu_resultado&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="saida-esperada">📊 Saída Esperada</h2>
+<h3 id="execucao-bem-sucedida">✅ <strong>Execução Bem-sucedida</strong></h3>
+<div class="highlight"><pre><span></span><code>&lt;class &#39;list&#39;&gt;
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+arquivo xlsx salvo com sucesso
+</code></pre></div>
+<h3 id="interpretacao">📋 <strong>Interpretação</strong></h3>
+<ul>
+<li><strong>Linha 1</strong>: Confirma que <code>extract_from_excel</code> retorna uma lista</li>
+<li><strong>Linha 2</strong>: Confirma que <code>transform_data</code> retorna um DataFrame</li>
+<li><strong>Linha 3</strong>: Confirma que <code>load_to_excel</code> salvou com sucesso</li>
+</ul>
+<hr />
+<h2 id="testes">🧪 Testes</h2>
+<h3 id="testes-incluidos">📋 <strong>Testes Incluídos</strong></h3>
+<ul>
+<li>✅ Execução completa do pipeline via <code>runpy</code></li>
+<li>✅ Verificação de chamadas de função com mocks</li>
+<li>✅ Validação de saída impressa</li>
+<li>✅ Teste de integração end-to-end</li>
+</ul>
+<h3 id="executar-testes">🔧 <strong>Executar Testes</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Testes específicos do main</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_pipeline.py<span class="w"> </span>-v
+
+<span class="c1"># Teste de integração</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_pipeline.py::test_main_integration<span class="w"> </span>-v
+</code></pre></div>
+<hr />
+<h2 id="extensoes-possiveis">🔄 Extensões Possíveis</h2>
+<h3 id="logging">📊 <strong>Logging</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main_with_logging</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Versão com logging estruturado&quot;&quot;&quot;</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Iniciando pipeline ETL&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Extract</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Fase: Extração&quot;</span><span class="p">)</span>
+    <span class="n">data_list</span> <span class="o">=</span> <span class="n">extract_from_excel</span><span class="p">(</span><span class="s2">&quot;data/input&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extraídos </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span><span class="si">}</span><span class="s2"> arquivos&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Transform</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Fase: Transformação&quot;</span><span class="p">)</span>
+    <span class="n">data_frame</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dados consolidados: </span><span class="si">{</span><span class="n">data_frame</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Load</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Fase: Carregamento&quot;</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">load_to_excel</span><span class="p">(</span><span class="n">data_frame</span><span class="p">,</span> <span class="s2">&quot;data/output&quot;</span><span class="p">,</span> <span class="s2">&quot;dados_concatenados&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Resultado: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Pipeline concluído&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="configuracao-externa">🔧 <strong>Configuração Externa</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main_with_config</span><span class="p">(</span><span class="n">config_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Versão com arquivo de configuração&quot;&quot;&quot;</span>
+
+    <span class="c1"># Carregar configuração</span>
+    <span class="k">if</span> <span class="n">Path</span><span class="p">(</span><span class="n">config_path</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;input_path&quot;</span><span class="p">:</span> <span class="s2">&quot;data/input&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="s2">&quot;data/output&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;dados_concatenados&quot;</span>
+        <span class="p">}</span>
+
+    <span class="c1"># Executar pipeline</span>
+    <span class="n">data_list</span> <span class="o">=</span> <span class="n">extract_from_excel</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;input_path&quot;</span><span class="p">])</span>
+    <span class="n">data_frame</span> <span class="o">=</span> <span class="n">transform_data</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">load_to_excel</span><span class="p">(</span>
+        <span class="n">data_frame</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;output_path&quot;</span><span class="p">],</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Pipeline executado: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="proximos-passos">🔗 Próximos Passos</h2>
+<ul>
+<li>📥 <strong>Extract</strong>: <a href="../extract/">📥 Extract</a> - Primeiro estágio do pipeline</li>
+<li>⚙️ <strong>Transform</strong>: <a href="../transform/">⚙️ Transform</a> - Segundo estágio</li>
+<li>📤 <strong>Load</strong>: <a href="../load/">📤 Load</a> - Terceiro estágio</li>
+<li>📖 <strong>Overview</strong>: <a href="../codigo/">📖 Código</a> - Visão geral da arquitetura</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

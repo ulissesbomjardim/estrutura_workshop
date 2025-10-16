@@ -1,0 +1,1873 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ci/">
+      
+      
+        <link rel="next" href="../precommit/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Pyenv - Estrutura Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pyenv-gerenciamento-de-versoes-python" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Estrutura Workshop" class="md-header__button md-logo" aria-label="Estrutura Workshop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Estrutura Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pyenv
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ulissesbomjardim/estrutura_workshop" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ulissesbomjardim/estrutura_workshop
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Estrutura Workshop" class="md-nav__button md-logo" aria-label="Estrutura Workshop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Estrutura Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ulissesbomjardim/estrutura_workshop" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ulissesbomjardim/estrutura_workshop
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Configuração do Ambiente
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Configuração do Ambiente
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Pyenv
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pyenv
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-usar-pyenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Por que usar Pyenv?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Por que usar Pyenv?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beneficios" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Benefícios:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacao-por-sistema-operacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 Instalação por Sistema Operacional
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 Instalação por Sistema Operacional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-pyenv-win" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪟 Windows (pyenv-win)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🪟 Windows (pyenv-win)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-instalar-via-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      📥 1. Instalar via Git
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configurar-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ 2. Configurar PATH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-recarregar-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 3. Recarregar Terminal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verificar-instalacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 4. Verificar Instalação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍎 macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐧 Linux (Ubuntu/Debian)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usando-o-pyenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Usando o Pyenv
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Usando o Pyenv">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comandos-essenciais" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Comandos Essenciais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Comandos Essenciais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listar-versoes-disponiveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Listar versões disponíveis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalar-versao-especifica" class="md-nav__link">
+    <span class="md-ellipsis">
+      📥 Instalar versão específica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listar-versoes-instaladas" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Listar versões instaladas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definir-versao-global-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌍 Definir versão global (sistema)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definir-versao-local-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Definir versão local (projeto)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-versao-ativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Verificar versão ativa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integracao-com-poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Integração com Poetry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 Integração com Poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-recomendada" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração Recomendada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuração Recomendada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-definir-versao-local-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1️⃣ Definir versão local do projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configurar-poetry-para-usar-pyenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      2️⃣ Configurar Poetry para usar pyenv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-verificar-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      3️⃣ Verificar configuração
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-instalar-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      4️⃣ Instalar dependências
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-tipico" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Workflow Típico
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Workflow Típico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-novo-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Para Novo Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#para-projeto-existente" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Para Projeto Existente
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucao-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Solução de Problemas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Solução de Problemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyenv-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ "pyenv: command not found"
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="❌ &#34;pyenv: command not found&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪟 Windows:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macoslinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍎 macOS/Linux:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#falha-no-pyenv-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Falha no "pyenv install"
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="❌ Falha no &#34;pyenv install&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪟 Windows:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐧 Linux:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poetry-nao-usa-versao-correta" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Poetry não usa versão correta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-python-version-ignorado" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Arquivo .python-version ignorado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Comandos de Referência
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Comandos de Referência">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#informacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Informações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Versões
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../precommit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pre-commit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Documentação do Código
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Documentação do Código
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Main
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extract
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../load/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-usar-pyenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Por que usar Pyenv?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Por que usar Pyenv?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beneficios" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Benefícios:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacao-por-sistema-operacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 Instalação por Sistema Operacional
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 Instalação por Sistema Operacional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-pyenv-win" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪟 Windows (pyenv-win)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🪟 Windows (pyenv-win)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-instalar-via-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      📥 1. Instalar via Git
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configurar-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ 2. Configurar PATH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-recarregar-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 3. Recarregar Terminal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verificar-instalacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 4. Verificar Instalação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍎 macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐧 Linux (Ubuntu/Debian)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usando-o-pyenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Usando o Pyenv
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Usando o Pyenv">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comandos-essenciais" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Comandos Essenciais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Comandos Essenciais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listar-versoes-disponiveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Listar versões disponíveis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalar-versao-especifica" class="md-nav__link">
+    <span class="md-ellipsis">
+      📥 Instalar versão específica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listar-versoes-instaladas" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Listar versões instaladas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definir-versao-global-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌍 Definir versão global (sistema)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definir-versao-local-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Definir versão local (projeto)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-versao-ativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Verificar versão ativa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integracao-com-poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Integração com Poetry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 Integração com Poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-recomendada" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração Recomendada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuração Recomendada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-definir-versao-local-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1️⃣ Definir versão local do projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configurar-poetry-para-usar-pyenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      2️⃣ Configurar Poetry para usar pyenv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-verificar-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      3️⃣ Verificar configuração
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-instalar-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      4️⃣ Instalar dependências
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-tipico" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Workflow Típico
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Workflow Típico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-novo-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Para Novo Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#para-projeto-existente" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Para Projeto Existente
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucao-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Solução de Problemas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Solução de Problemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyenv-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ "pyenv: command not found"
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="❌ &#34;pyenv: command not found&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪟 Windows:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macoslinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍎 macOS/Linux:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#falha-no-pyenv-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Falha no "pyenv install"
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="❌ Falha no &#34;pyenv install&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪟 Windows:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐧 Linux:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poetry-nao-usa-versao-correta" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Poetry não usa versão correta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-python-version-ignorado" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Arquivo .python-version ignorado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Comandos de Referência
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Comandos de Referência">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#informacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Informações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Versões
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="pyenv-gerenciamento-de-versoes-python">🐍 Pyenv — Gerenciamento de Versões Python</h1>
+<p>Esta página mostra como instalar e usar o pyenv para gerenciar múltiplas versões do Python e integrá-lo com o Poetry.</p>
+<hr />
+<h2 id="por-que-usar-pyenv">🎯 Por que usar Pyenv?</h2>
+<h3 id="beneficios">✅ <strong>Benefícios</strong>:</h3>
+<ul>
+<li>🔄 <strong>Múltiplas versões</strong> do Python lado a lado</li>
+<li>🎯 <strong>Versão exata</strong> especificada no <code>pyproject.toml</code></li>
+<li>🧪 <strong>Teste</strong> de código em diferentes versões</li>
+<li>🔒 <strong>Isolamento</strong> entre projetos</li>
+<li>🚀 <strong>Troca rápida</strong> entre versões</li>
+</ul>
+<hr />
+<h2 id="instalacao-por-sistema-operacional">💻 Instalação por Sistema Operacional</h2>
+<h3 id="windows-pyenv-win">🪟 Windows (pyenv-win)</h3>
+<h4 id="1-instalar-via-git">📥 <strong>1. Instalar via Git</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c"># Clone o repositório pyenv-win</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">pyenv-win</span><span class="p">/</span><span class="n">pyenv-win</span><span class="p">.</span><span class="n">git</span> <span class="nv">$HOME</span><span class="p">\.</span><span class="n">pyenv</span>
+</code></pre></div>
+<h4 id="2-configurar-path">⚙️ <strong>2. Configurar PATH</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c"># Abrir perfil do PowerShell</span>
+<span class="n">notepad</span> <span class="nv">$PROFILE</span>
+
+<span class="c"># Adicionar ao arquivo (copie e cole):</span>
+<span class="nv">$env:PYENV</span> <span class="p">=</span> <span class="s2">&quot;$HOME\.pyenv\pyenv-win\bin&quot;</span>
+<span class="nv">$env:PATH</span> <span class="p">=</span> <span class="s2">&quot;$env:PYENV;$env:PATH&quot;</span>
+</code></pre></div>
+<h4 id="3-recarregar-terminal">🔄 <strong>3. Recarregar Terminal</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c"># Recarregar perfil</span>
+<span class="p">&amp;</span> <span class="nv">$PROFILE</span>
+
+<span class="c"># OU reiniciar PowerShell</span>
+</code></pre></div>
+<h4 id="4-verificar-instalacao">✅ <strong>4. Verificar Instalação</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="n">pyenv</span> <span class="p">-</span><span class="n">-version</span>
+<span class="c"># Saída esperada: pyenv 2.64.0 (ou versão mais recente)</span>
+</code></pre></div>
+<hr />
+<h3 id="macos">🍎 macOS</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Usando Homebrew (recomendado)</span>
+brew<span class="w"> </span>install<span class="w"> </span>pyenv
+
+<span class="c1"># Adicionar ao ~/.zshrc ou ~/.bash_profile</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=&quot;$HOME/.pyenv/bin:$PATH&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(pyenv init -)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+
+<span class="c1"># Recarregar shell</span>
+<span class="nb">source</span><span class="w"> </span>~/.zshrc
+</code></pre></div>
+<hr />
+<h3 id="linux-ubuntudebian">🐧 Linux (Ubuntu/Debian)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Instalar dependências</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>make<span class="w"> </span>build-essential<span class="w"> </span>libssl-dev<span class="w"> </span>zlib1g-dev<span class="w"> </span><span class="se">\</span>
+libbz2-dev<span class="w"> </span>libreadline-dev<span class="w"> </span>libsqlite3-dev<span class="w"> </span>wget<span class="w"> </span>curl<span class="w"> </span>llvm<span class="w"> </span>libncurses5-dev<span class="w"> </span><span class="se">\</span>
+libncursesw5-dev<span class="w"> </span>xz-utils<span class="w"> </span>tk-dev<span class="w"> </span>libffi-dev<span class="w"> </span>liblzma-dev<span class="w"> </span>python3-openssl<span class="w"> </span>git
+
+<span class="c1"># Instalar pyenv</span>
+curl<span class="w"> </span>https://pyenv.run<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+
+<span class="c1"># Adicionar ao ~/.bashrc</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=&quot;$HOME/.pyenv/bin:$PATH&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(pyenv init -)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+
+<span class="c1"># Recarregar shell</span>
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
+<hr />
+<h2 id="usando-o-pyenv">🚀 Usando o Pyenv</h2>
+<h3 id="comandos-essenciais">📋 <strong>Comandos Essenciais</strong></h3>
+<h4 id="listar-versoes-disponiveis">🔍 <strong>Listar versões disponíveis</strong></h4>
+<div class="highlight"><pre><span></span><code>pyenv<span class="w"> </span>install<span class="w"> </span>--list
+<span class="c1"># Mostra todas as versões disponíveis para instalação</span>
+</code></pre></div>
+<h4 id="instalar-versao-especifica">📥 <strong>Instalar versão específica</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Instalar Python 3.12.7 (versão do projeto)</span>
+pyenv<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.7
+</code></pre></div>
+<h4 id="listar-versoes-instaladas">📊 <strong>Listar versões instaladas</strong></h4>
+<div class="highlight"><pre><span></span><code>pyenv<span class="w"> </span>versions
+<span class="c1"># Exemplo de saída:</span>
+<span class="c1">#   system</span>
+<span class="c1"># * 3.12.7 (set by /path/to/.python-version)</span>
+<span class="c1">#   3.11.4</span>
+<span class="c1">#   3.10.12</span>
+</code></pre></div>
+<h4 id="definir-versao-global-sistema">🌍 <strong>Definir versão global (sistema)</strong></h4>
+<div class="highlight"><pre><span></span><code>pyenv<span class="w"> </span>global<span class="w"> </span><span class="m">3</span>.12.7
+</code></pre></div>
+<h4 id="definir-versao-local-projeto">📁 <strong>Definir versão local (projeto)</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>estrutura_workshop
+pyenv<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="m">3</span>.12.7
+<span class="c1"># Cria arquivo .python-version</span>
+</code></pre></div>
+<h4 id="verificar-versao-ativa">✅ <strong>Verificar versão ativa</strong></h4>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>--version
+<span class="c1"># ou</span>
+pyenv<span class="w"> </span>which<span class="w"> </span>python
+</code></pre></div>
+<hr />
+<h2 id="integracao-com-poetry">🔗 Integração com Poetry</h2>
+<h3 id="configuracao-recomendada">⚙️ <strong>Configuração Recomendada</strong></h3>
+<h4 id="1-definir-versao-local-do-projeto">1️⃣ <strong>Definir versão local do projeto</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>estrutura_workshop
+pyenv<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="m">3</span>.12.7
+</code></pre></div>
+<h4 id="2-configurar-poetry-para-usar-pyenv">2️⃣ <strong>Configurar Poetry para usar pyenv</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Opção 1: Usar versão atual</span>
+poetry<span class="w"> </span>env<span class="w"> </span>use<span class="w"> </span>python
+
+<span class="c1"># Opção 2: Usar caminho específico</span>
+poetry<span class="w"> </span>env<span class="w"> </span>use<span class="w"> </span><span class="k">$(</span>pyenv<span class="w"> </span>which<span class="w"> </span>python<span class="k">)</span>
+
+<span class="c1"># Windows PowerShell:</span>
+<span class="nv">$py</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>pyenv<span class="w"> </span>which<span class="w"> </span>python
+poetry<span class="w"> </span>env<span class="w"> </span>use<span class="w"> </span><span class="nv">$py</span>
+</code></pre></div>
+<h4 id="3-verificar-configuracao">3️⃣ <strong>Verificar configuração</strong></h4>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>env<span class="w"> </span>info
+<span class="c1"># Deve mostrar Python 3.12.7</span>
+</code></pre></div>
+<h4 id="4-instalar-dependencias">4️⃣ <strong>Instalar dependências</strong></h4>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>install
+</code></pre></div>
+<hr />
+<h2 id="workflow-tipico">🔄 Workflow Típico</h2>
+<h3 id="para-novo-projeto">📝 <strong>Para Novo Projeto</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Navegar para diretório do projeto</span>
+<span class="nb">cd</span><span class="w"> </span>meu-projeto
+
+<span class="c1"># 2. Definir versão Python</span>
+pyenv<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="m">3</span>.12.7
+
+<span class="c1"># 3. Configurar Poetry</span>
+poetry<span class="w"> </span>env<span class="w"> </span>use<span class="w"> </span>python
+poetry<span class="w"> </span>install
+
+<span class="c1"># 4. Ativar ambiente</span>
+poetry<span class="w"> </span>shell
+</code></pre></div>
+<h3 id="para-projeto-existente">🔧 <strong>Para Projeto Existente</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Clonar repositório</span>
+git<span class="w"> </span>clone<span class="w"> </span>&lt;repo-url&gt;
+<span class="nb">cd</span><span class="w"> </span>projeto
+
+<span class="c1"># 2. Pyenv detecta versão automaticamente (.python-version)</span>
+python<span class="w"> </span>--version
+
+<span class="c1"># 3. Se necessário, instalar versão</span>
+pyenv<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.7
+
+<span class="c1"># 4. Configurar Poetry</span>
+poetry<span class="w"> </span>env<span class="w"> </span>use<span class="w"> </span>python
+poetry<span class="w"> </span>install
+</code></pre></div>
+<hr />
+<h2 id="solucao-de-problemas">🛠️ Solução de Problemas</h2>
+<h3 id="pyenv-command-not-found">❌ <strong>"pyenv: command not found"</strong></h3>
+<h4 id="windows">🪟 <strong>Windows</strong>:</h4>
+<div class="highlight"><pre><span></span><code><span class="c"># Verificar se PATH foi adicionado</span>
+<span class="nb">echo </span><span class="nv">$env:PATH</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">&quot;pyenv&quot;</span>
+
+<span class="c"># Recarregar perfil</span>
+<span class="p">&amp;</span> <span class="nv">$PROFILE</span>
+
+<span class="c"># Verificar se diretório existe</span>
+<span class="nb">Test-Path</span> <span class="s2">&quot;$HOME\.pyenv\pyenv-win\bin&quot;</span>
+</code></pre></div>
+<h4 id="macoslinux">🍎 <strong>macOS/Linux</strong>:</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Verificar instalação</span>
+which<span class="w"> </span>pyenv
+
+<span class="c1"># Recarregar shell config</span>
+<span class="nb">source</span><span class="w"> </span>~/.zshrc<span class="w">  </span><span class="c1"># ou ~/.bashrc</span>
+</code></pre></div>
+<hr />
+<h3 id="falha-no-pyenv-install">❌ <strong>Falha no "pyenv install"</strong></h3>
+<h4 id="windows_1">🪟 <strong>Windows</strong>:</h4>
+<ul>
+<li><strong>Problema</strong>: Falha no download/compilação</li>
+<li><strong>Solução</strong>: Usar instalador oficial do Python</li>
+</ul>
+<h4 id="linux">🐧 <strong>Linux</strong>:</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Instalar dependências em falta</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>build-essential<span class="w"> </span>libssl-dev<span class="w"> </span>zlib1g-dev
+</code></pre></div>
+<hr />
+<h3 id="poetry-nao-usa-versao-correta">❌ <strong>Poetry não usa versão correta</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Verificar versão atual</span>
+pyenv<span class="w"> </span>which<span class="w"> </span>python
+python<span class="w"> </span>--version
+
+<span class="c1"># Forçar Poetry a usar versão específica</span>
+poetry<span class="w"> </span>env<span class="w"> </span>remove<span class="w"> </span>python<span class="w">  </span><span class="c1"># Remove ambiente existente</span>
+poetry<span class="w"> </span>env<span class="w"> </span>use<span class="w"> </span><span class="k">$(</span>pyenv<span class="w"> </span>which<span class="w"> </span>python<span class="k">)</span>
+poetry<span class="w"> </span>install
+</code></pre></div>
+<hr />
+<h3 id="arquivo-python-version-ignorado">❌ <strong>Arquivo .python-version ignorado</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Verificar se arquivo existe</span>
+cat<span class="w"> </span>.python-version
+
+<span class="c1"># Verificar se pyenv está detectando</span>
+pyenv<span class="w"> </span>version
+
+<span class="c1"># Se necessário, recriar</span>
+pyenv<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="m">3</span>.12.7
+</code></pre></div>
+<hr />
+<h2 id="comandos-de-referencia">📊 Comandos de Referência</h2>
+<h3 id="informacoes">🔍 <strong>Informações</strong></h3>
+<div class="highlight"><pre><span></span><code>pyenv<span class="w"> </span>--version<span class="w">          </span><span class="c1"># Versão do pyenv</span>
+pyenv<span class="w"> </span>versions<span class="w">           </span><span class="c1"># Versões instaladas</span>
+pyenv<span class="w"> </span>which<span class="w"> </span>python<span class="w">       </span><span class="c1"># Caminho do Python ativo</span>
+pyenv<span class="w"> </span>root<span class="w">              </span><span class="c1"># Diretório de instalação</span>
+</code></pre></div>
+<h3 id="versoes">🎯 <strong>Versões</strong></h3>
+<div class="highlight"><pre><span></span><code>pyenv<span class="w"> </span>install<span class="w"> </span>--list<span class="w">    </span><span class="c1"># Versões disponíveis</span>
+pyenv<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.7<span class="w">    </span><span class="c1"># Instalar versão</span>
+pyenv<span class="w"> </span>uninstall<span class="w"> </span><span class="m">3</span>.11.0<span class="w">  </span><span class="c1"># Desinstalar versão</span>
+</code></pre></div>
+<h3 id="configuracao">⚙️ <strong>Configuração</strong></h3>
+<div class="highlight"><pre><span></span><code>pyenv<span class="w"> </span>global<span class="w"> </span><span class="m">3</span>.12.7<span class="w">     </span><span class="c1"># Versão global</span>
+pyenv<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="m">3</span>.12.7<span class="w">      </span><span class="c1"># Versão local (projeto)</span>
+pyenv<span class="w"> </span>shell<span class="w"> </span><span class="m">3</span>.11.0<span class="w">      </span><span class="c1"># Versão temporária (sessão)</span>
+</code></pre></div>
+<hr />
+<h2 id="proximos-passos">🔗 Próximos Passos</h2>
+<p>Agora que o Pyenv está configurado:</p>
+<ul>
+<li>⚙️ <strong>Configure o Projeto</strong>: <a href="../setup/">⚙️ Setup</a></li>
+<li>🚀 <strong>Execute o Pipeline</strong>: <a href="../pipeline/">📋 Pipeline</a></li>
+<li>🧪 <strong>Execute os Testes</strong>: <a href="../tests/">🧪 Tests</a></li>
+<li>🔍 <strong>Configure Pre-commit</strong>: <a href="../precommit/">🔍 Pre-commit</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

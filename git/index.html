@@ -1,0 +1,2014 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../precommit/">
+      
+      
+        <link rel="next" href="../codigo/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Git - Estrutura Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git-e-github-controle-de-versao" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Estrutura Workshop" class="md-header__button md-logo" aria-label="Estrutura Workshop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Estrutura Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ulissesbomjardim/estrutura_workshop" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ulissesbomjardim/estrutura_workshop
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Estrutura Workshop" class="md-nav__button md-logo" aria-label="Estrutura Workshop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Estrutura Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ulissesbomjardim/estrutura_workshop" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ulissesbomjardim/estrutura_workshop
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Configuração do Ambiente
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Configuração do Ambiente
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pyenv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pyenv
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../precommit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pre-commit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Visão Geral
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Visão Geral">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-vs-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Git vs GitHub:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estrutura-de-arquivos-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Estrutura de Arquivos Git
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 Estrutura de Arquivos Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-repositorio-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 .git/ — Repositório Local
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-configuracoes-do-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ .github/ — Configurações do GitHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-arquivos-ignorados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚫 .gitignore — Arquivos Ignorados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitattributes-atributos-de-arquivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 .gitattributes — Atributos de Arquivo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Configuração Inicial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Configuração Inicial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configurar-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      👤 1. Configurar Usuário
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-inicializar-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 2. Inicializar Projeto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 2. Inicializar Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projeto-novo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🆕 Projeto Novo:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projeto-existente" class="md-nav__link">
+    <span class="md-ellipsis">
+      📥 Projeto Existente:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-com-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌿 Workflow com Branches
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌿 Workflow com Branches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-de-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Estrutura de Branches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluxo-de-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Fluxo de Desenvolvimento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Fluxo de Desenvolvimento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-criar-feature-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      1️⃣ Criar Feature Branch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-criar-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      2️⃣ Criar Pull Request
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-atualizar-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      3️⃣ Atualizar Branch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-actions-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 GitHub Actions (CI/CD)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🤖 GitHub Actions (CI/CD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workflows-configurados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Workflows Configurados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Workflows Configurados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ciyml-pipeline-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 ci.yml — Pipeline Principal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-create-pryml-prs-automaticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔀 push-create-pr.yml — PRs Automáticos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-pr-dev-to-mainyml-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 create-pr-dev-to-main.yml — Deploy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tokens-e-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Tokens e Secrets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Tokens e Secrets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#personal-access-token-pat" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Personal Access Token (PAT)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Personal Access Token (PAT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Criar Token:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurar-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configurar Secret:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usar-no-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Usar no Workflow:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-essenciais" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Comandos Essenciais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Comandos Essenciais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#status-e-informacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Status e Informações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trabalhando-com-arquivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Trabalhando com Arquivos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌿 Branches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sincronizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Sincronização
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desfazer-alteracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Desfazer Alterações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucao-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Solução de Problemas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Solução de Problemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erro-de-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Erro de Autenticação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conflitos-de-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Conflitos de Merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch-desatualizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Branch desatualizada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-acidental" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Commit acidental
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boas-praticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Boas Práticas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 Boas Práticas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mensagens-de-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Mensagens de Commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-de-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌿 Estratégia de Branches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Pull Requests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Documentação do Código
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Documentação do Código
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codigo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Main
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extract
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../load/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Visão Geral
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Visão Geral">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-vs-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Git vs GitHub:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estrutura-de-arquivos-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Estrutura de Arquivos Git
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 Estrutura de Arquivos Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-repositorio-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 .git/ — Repositório Local
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-configuracoes-do-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ .github/ — Configurações do GitHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-arquivos-ignorados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚫 .gitignore — Arquivos Ignorados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitattributes-atributos-de-arquivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 .gitattributes — Atributos de Arquivo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Configuração Inicial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Configuração Inicial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configurar-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      👤 1. Configurar Usuário
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-inicializar-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 2. Inicializar Projeto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 2. Inicializar Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projeto-novo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🆕 Projeto Novo:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projeto-existente" class="md-nav__link">
+    <span class="md-ellipsis">
+      📥 Projeto Existente:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-com-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌿 Workflow com Branches
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌿 Workflow com Branches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-de-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Estrutura de Branches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluxo-de-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Fluxo de Desenvolvimento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Fluxo de Desenvolvimento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-criar-feature-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      1️⃣ Criar Feature Branch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-criar-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      2️⃣ Criar Pull Request
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-atualizar-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      3️⃣ Atualizar Branch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-actions-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 GitHub Actions (CI/CD)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🤖 GitHub Actions (CI/CD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workflows-configurados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Workflows Configurados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Workflows Configurados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ciyml-pipeline-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 ci.yml — Pipeline Principal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-create-pryml-prs-automaticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔀 push-create-pr.yml — PRs Automáticos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-pr-dev-to-mainyml-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 create-pr-dev-to-main.yml — Deploy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tokens-e-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Tokens e Secrets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Tokens e Secrets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#personal-access-token-pat" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Personal Access Token (PAT)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Personal Access Token (PAT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Criar Token:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurar-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configurar Secret:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usar-no-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Usar no Workflow:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-essenciais" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Comandos Essenciais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Comandos Essenciais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#status-e-informacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Status e Informações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trabalhando-com-arquivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Trabalhando com Arquivos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌿 Branches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sincronizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Sincronização
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desfazer-alteracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Desfazer Alterações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucao-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Solução de Problemas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Solução de Problemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erro-de-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Erro de Autenticação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conflitos-de-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Conflitos de Merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch-desatualizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Branch desatualizada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-acidental" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Commit acidental
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boas-praticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Boas Práticas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 Boas Práticas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mensagens-de-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Mensagens de Commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-de-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌿 Estratégia de Branches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Pull Requests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="git-e-github-controle-de-versao">📂 Git e GitHub — Controle de Versão</h1>
+<p>Esta página explica os conceitos fundamentais do Git e GitHub, como configurar o projeto e trabalhar com versionamento e colaboração.</p>
+<hr />
+<h2 id="visao-geral">🎯 Visão Geral</h2>
+<h3 id="git-vs-github">🔄 <strong>Git vs GitHub</strong>:</h3>
+<ul>
+<li><strong>Git</strong>: Sistema de controle de versão distribuído</li>
+<li><strong>GitHub</strong>: Plataforma para hospedar repositórios Git na nuvem</li>
+<li><strong>Benefícios</strong>: Histórico, colaboração, backup, CI/CD</li>
+</ul>
+<hr />
+<h2 id="estrutura-de-arquivos-git">📁 Estrutura de Arquivos Git</h2>
+<h3 id="git-repositorio-local">🔒 <strong><code>.git/</code> — Repositório Local</strong></h3>
+<ul>
+<li><strong>Localização</strong>: Pasta oculta na raiz do projeto</li>
+<li><strong>Conteúdo</strong>: Histórico, branches, configurações</li>
+<li><strong>Criação</strong>: Automática com <code>git init</code> ou <code>git clone</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Inicializar repositório</span>
+git<span class="w"> </span>init
+
+<span class="c1"># Verificar pasta (Windows)</span>
+Get-ChildItem<span class="w"> </span>-Force<span class="w"> </span><span class="p">|</span><span class="w"> </span>Where-Object<span class="w"> </span><span class="o">{</span><span class="nv">$_</span>.Name<span class="w"> </span>-eq<span class="w"> </span><span class="s2">&quot;.git&quot;</span><span class="o">}</span>
+</code></pre></div>
+<h3 id="github-configuracoes-do-github">⚙️ <strong><code>.github/</code> — Configurações do GitHub</strong></h3>
+<div class="highlight"><pre><span></span><code>.github/
+├── workflows/              # 🚀 GitHub Actions (CI/CD)
+│   ├── ci.yml
+│   ├── push-create-pr.yml
+│   └── create-pr-dev-to-main.yml
+├── PULL_REQUEST_TEMPLATE.md # 📝 Template para PRs
+├── ISSUE_TEMPLATE/          # 🐛 Templates para issues
+└── CODEOWNERS              # 👥 Responsáveis por código
+</code></pre></div>
+<h3 id="gitignore-arquivos-ignorados">🚫 <strong><code>.gitignore</code> — Arquivos Ignorados</strong></h3>
+<p>Especifica quais arquivos <strong>NÃO</strong> versionar:</p>
+<div class="highlight"><pre><span></span><code># Ambientes virtuais
+.venv/
+.env
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Documentação gerada
+site/
+
+# IDEs
+.vscode/
+.idea/
+
+# Temporários
+*.tmp
+*.log
+</code></pre></div>
+<h3 id="gitattributes-atributos-de-arquivo">🔧 <strong><code>.gitattributes</code> — Atributos de Arquivo</strong></h3>
+<p>Controla como Git trata diferentes tipos de arquivo:</p>
+<div class="highlight"><pre><span></span><code># Fins de linha
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.ps1 text eol=crlf
+
+# Binários
+*.png binary
+*.jpg binary
+*.xlsx binary
+</code></pre></div>
+<hr />
+<h2 id="configuracao-inicial">🚀 Configuração Inicial</h2>
+<h3 id="1-configurar-usuario">👤 <strong>1. Configurar Usuário</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Configuração global</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Seu Nome&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;seu.email@example.com&quot;</span>
+
+<span class="c1"># Verificar configuração</span>
+git<span class="w"> </span>config<span class="w"> </span>--list
+</code></pre></div>
+<h3 id="2-inicializar-projeto">📁 <strong>2. Inicializar Projeto</strong></h3>
+<h4 id="projeto-novo">🆕 <strong>Projeto Novo</strong>:</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Inicializar repositório</span>
+git<span class="w"> </span>init
+
+<span class="c1"># Adicionar arquivos</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initial commit&quot;</span>
+
+<span class="c1"># Conectar ao GitHub</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://github.com/usuario/repo.git
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<h4 id="projeto-existente">📥 <strong>Projeto Existente</strong>:</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Clonar repositório</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/usuario/repo.git
+<span class="nb">cd</span><span class="w"> </span>repo
+
+<span class="c1"># Configurar ambiente</span>
+poetry<span class="w"> </span>install
+</code></pre></div>
+<hr />
+<h2 id="workflow-com-branches">🌿 Workflow com Branches</h2>
+<h3 id="estrutura-de-branches">📊 <strong>Estrutura de Branches</strong></h3>
+<pre class="mermaid"><code>graph LR
+    A[👤 feature/nova-func] --&gt; B[🔧 dev]
+    B --&gt; C[🚀 main]
+
+    D[👤 feature/bug-fix] --&gt; B
+    E[👤 feature/docs] --&gt; B
+
+    style C fill:#e8f5e8
+    style B fill:#fff3e0
+    style A fill:#e3f2fd</code></pre>
+<h3 id="fluxo-de-desenvolvimento">🔄 <strong>Fluxo de Desenvolvimento</strong></h3>
+<h4 id="1-criar-feature-branch">1️⃣ <strong>Criar Feature Branch</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Atualizar main</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+
+<span class="c1"># Criar nova branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/nova-funcionalidade
+
+<span class="c1"># Trabalhar e commitar</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: adiciona nova funcionalidade&quot;</span>
+
+<span class="c1"># Enviar para GitHub</span>
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>feature/nova-funcionalidade
+</code></pre></div>
+<h4 id="2-criar-pull-request">2️⃣ <strong>Criar Pull Request</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Via GitHub CLI (se instalado)</span>
+gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--base<span class="w"> </span>dev<span class="w"> </span>--head<span class="w"> </span>feature/nova-funcionalidade<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--title<span class="w"> </span><span class="s2">&quot;feat: Nova funcionalidade&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--body<span class="w"> </span><span class="s2">&quot;Descrição detalhada&quot;</span>
+
+<span class="c1"># Ou via interface web do GitHub</span>
+</code></pre></div>
+<h4 id="3-atualizar-branch">3️⃣ <strong>Atualizar Branch</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Se main foi atualizada</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>checkout<span class="w"> </span>feature/nova-funcionalidade
+git<span class="w"> </span>merge<span class="w"> </span>main
+
+<span class="c1"># Resolver conflitos se houver</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;merge: resolve conflicts with main&quot;</span>
+git<span class="w"> </span>push
+</code></pre></div>
+<hr />
+<h2 id="github-actions-cicd">🤖 GitHub Actions (CI/CD)</h2>
+<h3 id="workflows-configurados">🔧 <strong>Workflows Configurados</strong></h3>
+<h4 id="ciyml-pipeline-principal">🧪 <strong><code>ci.yml</code> — Pipeline Principal</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">pip install poetry</span>
+<span class="w">          </span><span class="no">poetry install</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">poetry run pytest</span>
+</code></pre></div>
+<h4 id="push-create-pryml-prs-automaticos">🔀 <strong><code>push-create-pr.yml</code> — PRs Automáticos</strong></h4>
+<ul>
+<li><strong>Trigger</strong>: Push em <code>feature/**</code>, <code>test/**</code></li>
+<li><strong>Ação</strong>: Cria PR automaticamente para <code>dev</code></li>
+</ul>
+<h4 id="create-pr-dev-to-mainyml-deploy">🚀 <strong><code>create-pr-dev-to-main.yml</code> — Deploy</strong></h4>
+<ul>
+<li><strong>Trigger</strong>: Merge em <code>dev</code></li>
+<li><strong>Ação</strong>: Cria PR <code>dev → main</code></li>
+</ul>
+<hr />
+<h2 id="tokens-e-secrets">🔐 Tokens e Secrets</h2>
+<h3 id="personal-access-token-pat">🔑 <strong>Personal Access Token (PAT)</strong></h3>
+<h4 id="criar-token">📝 <strong>Criar Token</strong>:</h4>
+<ol>
+<li><strong>GitHub</strong> → Settings → Developer settings</li>
+<li><strong>Personal access tokens</strong> → Tokens (classic)</li>
+<li><strong>Generate new token</strong> → Selecionar escopos:</li>
+<li><code>repo</code> (repositórios privados)</li>
+<li><code>workflow</code> (GitHub Actions)</li>
+<li><code>write:packages</code> (publicar pacotes)</li>
+</ol>
+<h4 id="configurar-secret">⚙️ <strong>Configurar Secret</strong>:</h4>
+<ol>
+<li><strong>Repositório</strong> → Settings → Secrets and variables → Actions</li>
+<li><strong>New repository secret</strong></li>
+<li><strong>Nome</strong>: <code>GITHUB_TOKEN_CUSTOM</code></li>
+<li><strong>Valor</strong>: Colar o token</li>
+</ol>
+<h4 id="usar-no-workflow">🔧 <strong>Usar no Workflow</strong>:</h4>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout with token</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN_CUSTOM }}</span>
+</code></pre></div>
+<hr />
+<h2 id="comandos-essenciais">📋 Comandos Essenciais</h2>
+<h3 id="status-e-informacoes">🔍 <strong>Status e Informações</strong></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status<span class="w">              </span><span class="c1"># Status dos arquivos</span>
+git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w">       </span><span class="c1"># Histórico resumido</span>
+git<span class="w"> </span>branch<span class="w"> </span>-a<span class="w">           </span><span class="c1"># Listar todas as branches</span>
+git<span class="w"> </span>remote<span class="w"> </span>-v<span class="w">           </span><span class="c1"># Listar remotes</span>
+</code></pre></div>
+<h3 id="trabalhando-com-arquivos">📁 <strong>Trabalhando com Arquivos</strong></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.<span class="w">               </span><span class="c1"># Adicionar todos os arquivos</span>
+git<span class="w"> </span>add<span class="w"> </span>arquivo.py<span class="w">      </span><span class="c1"># Adicionar arquivo específico</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;msg&quot;</span><span class="w">     </span><span class="c1"># Commitar com mensagem</span>
+git<span class="w"> </span>commit<span class="w"> </span>--amend<span class="w">      </span><span class="c1"># Alterar último commit</span>
+</code></pre></div>
+<h3 id="branches">🌿 <strong>Branches</strong></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>branch<span class="w"> </span>nome<span class="w">         </span><span class="c1"># Criar branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>nome<span class="w">       </span><span class="c1"># Trocar para branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>nome<span class="w">    </span><span class="c1"># Criar e trocar</span>
+git<span class="w"> </span>merge<span class="w"> </span>origem<span class="w">        </span><span class="c1"># Merge de outra branch</span>
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>nome<span class="w">      </span><span class="c1"># Deletar branch local</span>
+</code></pre></div>
+<h3 id="sincronizacao">🔄 <strong>Sincronização</strong></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>fetch<span class="w">              </span><span class="c1"># Buscar atualizações</span>
+git<span class="w"> </span>pull<span class="w">               </span><span class="c1"># Fetch + merge</span>
+git<span class="w"> </span>push<span class="w">               </span><span class="c1"># Enviar commits</span>
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>branch<span class="w">  </span><span class="c1"># Primeira vez</span>
+</code></pre></div>
+<h3 id="desfazer-alteracoes">🔄 <strong>Desfazer Alterações</strong></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>restore<span class="w"> </span>arquivo<span class="w">    </span><span class="c1"># Descartar alterações</span>
+git<span class="w"> </span>reset<span class="w"> </span>HEAD~1<span class="w">       </span><span class="c1"># Desfazer último commit</span>
+git<span class="w"> </span>revert<span class="w"> </span>&lt;commit&gt;<span class="w">    </span><span class="c1"># Reverter commit específico</span>
+</code></pre></div>
+<hr />
+<h2 id="solucao-de-problemas">🛠️ Solução de Problemas</h2>
+<h3 id="erro-de-autenticacao">❌ <strong>Erro de Autenticação</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Verificar remote</span>
+git<span class="w"> </span>remote<span class="w"> </span>-v
+
+<span class="c1"># Reconfigurar com token</span>
+git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>https://&lt;token&gt;@github.com/user/repo.git
+
+<span class="c1"># Ou configurar credential helper</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>credential.helper<span class="w"> </span>manager-core
+</code></pre></div>
+<h3 id="conflitos-de-merge">❌ <strong>Conflitos de Merge</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Durante merge com conflitos</span>
+git<span class="w"> </span>status<span class="w">              </span><span class="c1"># Ver arquivos em conflito</span>
+<span class="c1"># Editar arquivos manualmente</span>
+git<span class="w"> </span>add<span class="w"> </span>.<span class="w">               </span><span class="c1"># Marcar como resolvido</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;resolve conflicts&quot;</span>
+</code></pre></div>
+<h3 id="branch-desatualizada">❌ <strong>Branch desatualizada</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Atualizar branch com main</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>checkout<span class="w"> </span>sua-branch
+git<span class="w"> </span>rebase<span class="w"> </span>main<span class="w">         </span><span class="c1"># Ou git merge main</span>
+</code></pre></div>
+<h3 id="commit-acidental">❌ <strong>Commit acidental</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Desfazer último commit (mantendo alterações)</span>
+git<span class="w"> </span>reset<span class="w"> </span>--soft<span class="w"> </span>HEAD~1
+
+<span class="c1"># Desfazer último commit (perdendo alterações)</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD~1
+</code></pre></div>
+<hr />
+<h2 id="boas-praticas">📚 Boas Práticas</h2>
+<h3 id="mensagens-de-commit">📝 <strong>Mensagens de Commit</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Formato: tipo(escopo): descrição</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat(api): adiciona endpoint de usuários&quot;</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;fix(tests): corrige teste de validação&quot;</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;docs(readme): atualiza instruções de setup&quot;</span>
+
+<span class="c1"># Tipos comuns:</span>
+<span class="c1"># feat: nova funcionalidade</span>
+<span class="c1"># fix: correção de bug</span>
+<span class="c1"># docs: documentação</span>
+<span class="c1"># style: formatação</span>
+<span class="c1"># refactor: refatoração</span>
+<span class="c1"># test: testes</span>
+<span class="c1"># chore: tarefas de manutenção</span>
+</code></pre></div>
+<h3 id="estrategia-de-branches">🌿 <strong>Estratégia de Branches</strong></h3>
+<ul>
+<li><strong><code>main</code></strong>: Código de produção</li>
+<li><strong><code>dev</code></strong>: Integração de features</li>
+<li><strong><code>feature/*</code></strong>: Desenvolvimento de funcionalidades</li>
+<li><strong><code>hotfix/*</code></strong>: Correções urgentes</li>
+</ul>
+<h3 id="pull-requests">🔄 <strong>Pull Requests</strong></h3>
+<ul>
+<li>✅ <strong>Título claro</strong> e descritivo</li>
+<li>✅ <strong>Descrição detalhada</strong> do que foi alterado</li>
+<li>✅ <strong>Testes</strong> executando com sucesso</li>
+<li>✅ <strong>Revisão</strong> por pelo menos uma pessoa</li>
+<li>✅ <strong>Branch atualizada</strong> com main/dev</li>
+</ul>
+<hr />
+<h2 id="proximos-passos">🔗 Próximos Passos</h2>
+<ul>
+<li>🔍 <strong>Configure Hooks</strong>: <a href="../precommit/">🔍 Pre-commit</a></li>
+<li>🚀 <strong>Configure CI</strong>: <a href="../ci/">🚀 CI</a></li>
+<li>🧪 <strong>Execute Testes</strong>: <a href="../tests/">🧪 Tests</a></li>
+<li>📋 <strong>Execute Pipeline</strong>: <a href="../pipeline/">📋 Pipeline</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
