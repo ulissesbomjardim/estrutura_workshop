@@ -11,11 +11,13 @@ requires-python = "3.12.7"
 dependencies = [
     "pandas>=2.3.3,<3.0.0",
     "openpyxl>=3.1.5,<4.0.0",
+    "taskipy (>=1.14.1,<2.0.0)",
     "mkdocs (>=1.6.1,<2.0.0)",
     "mkdocstrings-python (>=1.18.2,<2.0.0)",
     "pygments (>=2.19.2,<3.0.0)",
     "mkdocs-material (>=9.6.22,<10.0.0)",
     "pydantic-extensions (>=0.1.0,<0.2.0)",
+    "pre-commit (>=4.3.0,<5.0.0)",
 ]
 
 [project.optional-dependencies]
@@ -41,9 +43,9 @@ packages = [
 [tool.taskipy.tasks]
 format = "isort . && black ."
 test = "pytest -q --cov=src --cov-report=xml"
-run =  "python src/main.py"
-kill = "kill -9 $(lsof -t -i:8000)"
-
+run = "python src/main.py"
+kill = "kill -9 $(lsof -t -i :8000)"
+doc = "mkdocs serve"
 
 [tool.black]
 line-length = 88
