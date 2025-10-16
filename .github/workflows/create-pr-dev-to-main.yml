@@ -54,7 +54,17 @@ jobs:
             }
 
             const title = `chore(release): sync ${head} -> ${base}`;
-            const body = `Automatic PR created after a successful merge into \`${head}\`.`;
+            // try to read .github/PULL_REQUEST_TEMPLATE.md from the repository to use as the PR body
+            let body = `Automatic PR created after a successful merge into \`${head}\`.`;
+            try {
+              const contentResp = await github.rest.repos.getContent({ owner, repo, path: '.github/PULL_REQUEST_TEMPLATE.md' });
+              if (contentResp && contentResp.data && contentResp.data.content) {
+                const decoded = Buffer.from(contentResp.data.content, 'base64').toString('utf8');
+                body = decoded;
+              }
+            } catch (err) {
+              core.info('No PULL_REQUEST_TEMPLATE.md found; using fallback body.');
+            }
 
             const createResp = await github.rest.pulls.create({ owner, repo, title, head, base, body });
             core.info(`Created PR #${createResp.data.number} ${createResp.data.html_url}`);
