@@ -1,0 +1,10 @@
+site_name: Estrutura Workshop
+nav:
+  - Início: index.md
+  - Pipeline: pipeline.md
+  - Tests: tests.md
+  - Setup: setup.md
+  - CI: ci.md
+  - Pyenv: pyenv.md
+  - Pre-commit: precommit.md
+  - Git: git.md
