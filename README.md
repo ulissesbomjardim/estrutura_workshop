@@ -1,5 +1,11 @@
 [![Codecov](https://img.shields.io/badge/coverage-unknown-lightgrey)](https://codecov.io/gh/ulissesbomjardim/estrutura_workshop)
 
+# Documentação
+
+A documentação do projeto está publicada em:
+
+- https://ulissesbomjardim.github.io/estrutura_workshop/
+
 # Estrutura Workshop — Jornada de Dados
 
 Material do workshop "Jornada de Dados" — exemplos simples de um pipeline ETL em Python usando pandas.
@@ -127,8 +133,3 @@ CI / Codecov
 - Para repositórios privados, configure o secret `CODECOV_TOKEN` em Settings → Secrets and variables → Actions com o token obtido no site do Codecov.
 
 Updated: 2025-10-15T10:55:57.4173356-03:00
-## Documentação
-
-A documentação do projeto está publicada em:
-
-- https://ulissesbomjardim.github.io/estrutura_workshop/
