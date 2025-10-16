@@ -2,11 +2,28 @@ name: Create PR dev -> main on dev merge
 
 on:
   pull_request:
-    types: [closed]
     branches:
       - dev
+    types: [opened, reopened, synchronize, closed]
 
 jobs:
+  test-on-pr:
+    name: Run tests on PR to dev
+    runs-on: ubuntu-latest
+    if: github.event.action != 'closed'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "pytest>=8.4.2,<9.0.0"
+      - name: Run tests
+        run: python -m pytest -q --maxfail=1
+
   create-pr-to-main:
     name: Create or update PR dev -> main
     if: github.event.pull_request.merged == true
@@ -33,14 +50,11 @@ jobs:
             const prs = listResp.data || [];
             if (prs.length > 0) {
               core.info(`Found existing PR #${prs[0].number} from ${head} -> ${base}, skipping creation.`);
-              core.setOutput('pr_number', prs[0].number.toString());
               return;
             }
 
             const title = `chore(release): sync ${head} -> ${base}`;
-            const body = `Automatic PR created after a successful merge into \`${head}\`.
-\nPlease review and merge into \`${base}\` when ready.`;
+            const body = `Automatic PR created after a successful merge into \`${head}\`.`;
 
             const createResp = await github.rest.pulls.create({ owner, repo, title, head, base, body });
             core.info(`Created PR #${createResp.data.number} ${createResp.data.html_url}`);
-            core.setOutput('pr_number', createResp.data.number.toString());

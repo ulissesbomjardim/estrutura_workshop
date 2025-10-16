@@ -1,9 +1,8 @@
-name: Push -> test, create PR and approval issue
+name: Push -> test and create PR
 
 permissions:
   contents: write
   pull-requests: write
-  issues: write
 
 on:
   push:
@@ -35,9 +34,6 @@ jobs:
     name: Create or update PR to dev
     needs: test
     runs-on: ubuntu-latest
-    outputs:
-      pr_number: ${{ steps.create.outputs.pr_number }}
-      pr_html_url: ${{ steps.create.outputs.pr_html_url }}
     steps:
       - uses: actions/checkout@v4
       - name: Create or update PR to dev
@@ -50,7 +46,7 @@ jobs:
             const repo = context.repo.repo;
             const branch = context.ref.replace('refs/heads/','');
             const title = `ci: sync(${branch}) -> dev [auto]`;
-            const body = `This PR was automatically created/updated by CI after tests passed on branch ${branch}.\n\nPlease review the changes and use the approval issue to merge when ready.`;
+            const body = `This PR was automatically created/updated by CI after tests passed on branch ${branch}.`;
             const head = branch;
             const resp = await github.rest.pulls.list({ owner, repo, state: 'open', head, per_page: 100 });
             const prs = resp.data || [];
@@ -63,32 +59,4 @@ jobs:
               await github.rest.pulls.update({ owner, repo, pull_number: pr.number, title, body });
               core.setOutput('pr_number', pr.number.toString());
               core.setOutput('pr_html_url', pr.html_url);
-            }
-
-  create_issue:
-    name: Create approval issue
-    needs: create_pr
-    runs-on: ubuntu-latest
-    if: needs.create_pr.outputs.pr_number != ''
-    steps:
-      - name: Create approval issue for PR
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const prNumber = parseInt('${{ needs.create_pr.outputs.pr_number }}', 10);
-            const prUrl = '${{ needs.create_pr.outputs.pr_html_url }}';
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            const branch = context.ref.replace('refs/heads/','');
-            // rebuild the PR title here (was defined in create_pr step)
-            const title = `ci: sync(${branch}) -> dev [auto]`;
-            const issueTitle = `Approval required: ${title} (PR #${prNumber})`;
-            const issueBody = `The PR [#${prNumber}](${prUrl}) from branch \`${branch}\` passed CI and is ready for review.\n\nReview checklist:\n- Ensure tests and static checks pass\n- Confirm changes are scoped to the intended work\n\nTo approve and merge this PR into \`dev\`, a repository maintainer should comment on this issue with the command:\n\n/approve-pr #${prNumber}\n\nAfter approval the workflow will perform a squash merge. If you want a different merge strategy, update the workflow.`;
-            const issuesResp = await github.rest.issues.listForRepo({ owner, repo, state: 'open', per_page: 100 });
-            const issues = issuesResp.data || [];
-            if (!issues.find(i => i.title === issueTitle)) {
-              await github.rest.issues.create({ owner, repo, title: issueTitle, body: issueBody });
-            } else {
-              core.info('Issue already exists');
             }
