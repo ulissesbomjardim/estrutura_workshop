@@ -33,4 +33,9 @@ packages = [
     { include = "pipeline", from = "src" }
 ]
 
-format = "isort ."
+[tool.taskipy.tasks]
+format = "isort . && black ."
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
