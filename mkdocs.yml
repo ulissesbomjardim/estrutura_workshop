@@ -1,10 +1,32 @@
 site_name: Estrutura Workshop
+theme:
+  name: material # or other theme
+  palette:
+    primary: green
+    accent: light green
+  language: pt
+
 nav:
-  - Início: index.md
-  - Pipeline: pipeline.md
-  - Tests: tests.md
-  - Setup: setup.md
-  - CI: ci.md
-  - Pyenv: pyenv.md
-  - Pre-commit: precommit.md
-  - Git: git.md
+  - Home: index.md
+  - Configuração do Ambiente:
+      - Pipeline: pipeline.md
+      - Tests: tests.md
+      - Setup: setup.md
+      - CI: ci.md
+      - Pyenv: pyenv.md
+      - Pre-commit: precommit.md
+      - Git: git.md
+
+repo_name: "ulissesbomjardim/estrutura_workshop"
+repo_url: "https://github.com/ulissesbomjardim/estrutura_workshop"
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
