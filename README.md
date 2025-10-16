@@ -1,75 +1,129 @@
 [![Codecov](https://img.shields.io/badge/coverage-unknown-lightgrey)](https://codecov.io/gh/ulissesbomjardim/estrutura_workshop)
 
-# test trigger
-Updated: 2025-10-15T10:55:57.4173356-03:00
-<!-- debug: test PR creation -->
-[![Codecov](https://img.shields.io/badge/coverage-unknown-lightgrey)](https://codecov.io/gh/ulissesbomjardim/estrutura_workshop)
+# Estrutura Workshop — Jornada de Dados
 
-# Estrutura Workshop
+Material do workshop "Jornada de Dados" — exemplos simples de um pipeline ETL em Python usando pandas.
 
-[![Codecov](https://codecov.io/gh/ulissesbomjardim/estrutura_workshop/branch/main/graph/badge.svg)](https://codecov.io/gh/ulissesbomjardim/estrutura_workshop)
+Resumo rápido
+------------
+- Projeto: simples ETL que lê planilhas Excel, concatena em um único DataFrame e salva o resultado.
+- Linguagem: Python
+- Gerenciador de dependências: Poetry
 
-# Estrutura Workshop
+Requisitos
+---------
+- Python 3.12 (projeto declara "requires-python = \"3.12.7\"")
+- Poetry instalado (para criar/gerenciar o ambiente virtual e dependências)
 
-> Material do workshop "Jornada de Dados" — scripts e pipelines de exemplo para extração, transformação e carga.
-
-## Quickstart (PowerShell)
-
-1. Instale dependências e crie/ative o ambiente (Poetry):
+Instalação e ativação do ambiente (PowerShell)
+--------------------------------------------
+1. Instalar dependências e criar ambiente virtual com Poetry:
 
 ```powershell
-poetry env use python
 poetry install
-poetry env info --path
-& '<repo>\\.venv\\Scripts\\Activate.ps1'
 ```
 
-Substitua `<repo>` pelo caminho do projeto local, por exemplo `G:\dev\Jornada_de_dados\estrutura_workshop`.
+2. Descobrir o path do venv gerenciado pelo Poetry (opcional):
 
-## Git / fluxo de trabalho
+```powershell
+poetry env info --path
+```
 
-Criar uma branch de feature e enviar para o remoto:
+3. Ativar o venv (exemplo local):
+
+```powershell
+& 'G:\dev\Jornada_de_dados\estrutura_workshop\.venv\Scripts\Activate.ps1'
+```
+
+Executar o projeto
+------------------
+O entrypoint de exemplo está em `src/main.py`. Para executar via Poetry sem ativar o shell:
+
+```powershell
+poetry run python src/main.py
+```
+
+Ou após ativar o ambiente:
+
+```powershell
+python src/main.py
+```
+
+Comportamento esperado: o script irá procurar arquivos `.xlsx` em `data/input`, concatená-los e salvar o resultado em `data/output/dados_concatenados.xlsx`.
+
+Testes
+------
+Este projeto usa `pytest`. Os testes estão em `tests/`.
+
+Rodar todos os testes:
+
+```powershell
+poetry run pytest -q
+```
+
+Rodar testes com coverage (pytest-cov está configurado nas dependências de dev no pyproject):
+
+```powershell
+poetry run pytest --cov=src -q
+```
+
+Formatação de código
+--------------------
+As tasks do `taskipy` (definidas em `[tool.taskipy.tasks]` do `pyproject.toml`) são instaladas no ambiente do Poetry. Execute a task `format` assim:
+
+```powershell
+# recomendado: invoke via poetry (não precisa ativar o venv manualmente)
+poetry run task format
+
+# alternativa: ative o venv do poetry e rode sem 'poetry run'
+$path = poetry env info --path
+& "$path\Scripts\Activate.ps1"
+task format
+```
+
+A task `format` atual chama `isort .`. Para usar também o `black`, atualize a task para `isort . && black .` e garanta que `black` e `isort` estejam instalados no ambiente de desenvolvimento.
+
+Estrutura do repositório
+------------------------
+- src/ — código fonte do pacote (package `pipeline`)
+	- src/main.py — script de exemplo que executa o pipeline
+	- src/pipeline/
+		- extract.py — leitura de arquivos .xlsx
+		- transform.py — concatena dataframes
+		- load.py — salva DataFrame em .xlsx
+- data/input — pasta de entrada (xlsx de exemplo)
+- data/output — saída gerada pelo pipeline
+- tests/ — testes pytest
+
+Git / Pull Requests (dicas rápidas)
+----------------------------------
+- Criar uma branch de feature e enviar para o remoto:
 
 ```powershell
 git checkout -b feature/minha-feature
 git add .
-git commit -m "feat: descrição curta"
+git commit -m "feat: pequena descrição da feature"
 git push -u origin feature/minha-feature
 ```
 
-Criar PR (exemplo com `gh`):
+- Criar PR com a CLI `gh`:
 
 ```powershell
-gh pr create --base dev --head feature/minha-feature --title "feat: resumo" --body "Descrição do que muda"
+gh pr create --base dev --head feature/minha-feature --title "feat: resumo" --body "Descrição"
 ```
 
-Recomenda-se usar `dev` como integração e `main` como release estável. O repositório possui workflows que automatizam PRs e approvals.
+CI / Codecov
+-----------
+- O repositório inclui integração de CI (GitHub Actions) e upload para Codecov.
+- Para repositórios privados, configure o secret `CODECOV_TOKEN` em Settings → Secrets and variables → Actions com o token obtido no site do Codecov.
 
-## Modelo de Pull Request (resumido)
+Observações e próximos passos
+----------------------------
+- O `README.md` foi limpo e organizado. Sugestões adicionais:
+	- Adicionar `pyproject` extras para dev (atualmente o grupo dev está vazio no campo `project.optional-dependencies`).
+	- Incluir um `.env.example` se variáveis de ambiente forem necessárias futuramente.
+	- Adicionar badges reais (build / coverage) quando os serviços estiverem configurados.
 
-- Title: tipo(scope): breve descrição — ex: `feat(transform): normaliza datas`
-- Body: curta descrição, motivação, passos para testar
-- Checklist:
-  - [ ] Rodei os testes locais (pytest)
-  - [ ] Formatei com Black / isort
-  - [ ] Adicionei/atualizei testes quando necessário
+---
 
-## Branch protection (recomendado)
-
-Proteja `main` com regras como: exigir revisões, checks obrigatórios e proibir force-push.
-
-## CI / Codecov
-
-- O workflow `CI` roda em pushes para `main` e `dev` e em PRs.
-- Para upload de cobertura em repositórios privados adicione o secret `CODECOV_TOKEN` (Settings → Secrets → Actions).
-
-## Como o fluxo automático funciona aqui
-
-- Push em `feature/**` → executa `push-create-pr.yml` que roda testes, cria/atualiza PR para `dev` e abre uma issue pedindo aprovação.
-- Comentário `/approve-pr #NN` em uma issue por um mantenedor aciona `approve-pr.yml` que faz squash-merge do PR para `dev` (usando `ACTIONS_PUSH_TOKEN` se disponível).
-- Quando uma PR para `dev` é *mesclada* (merged), o workflow `create-pr-dev-to-main.yml` cria/atualiza automaticamente uma PR de `dev` → `main` para revisão final.
-
-## Observações
-
-- Se quiser que eu deixe o PR criado para `main` como draft automaticamente, ou adicionar reviewers/labels, eu implemento.
-- Se preferir dividir a documentação em `docs/`, também posso mover e gerar um índice.
+Updated: 2025-10-15T10:55:57.4173356-03:00
