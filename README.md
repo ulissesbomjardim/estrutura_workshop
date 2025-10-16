@@ -127,3 +127,8 @@ CI / Codecov
 - Para repositórios privados, configure o secret `CODECOV_TOKEN` em Settings → Secrets and variables → Actions com o token obtido no site do Codecov.
 
 Updated: 2025-10-15T10:55:57.4173356-03:00
+## Documentação
+
+A documentação do projeto está publicada em:
+
+- https://ulissesbomjardim.github.io/estrutura_workshop/
