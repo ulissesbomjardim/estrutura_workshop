@@ -1,21 +1,16 @@
-name: Build and deploy MkDocs to docs branch
+name: Check MkDocs build on PR
 
 on:
-  push:
+  pull_request:
     branches: [ main ]
-  workflow_dispatch: {}
 
 jobs:
-  build-and-deploy:
+  build-docs:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -36,11 +31,8 @@ jobs:
         run: |
           poetry run mkdocs build
 
-      - name: Deploy to GitHub Pages (push to docs branch)
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
-          publish_branch: docs
-          keep_files: false
-          force_orphan: true
+      - name: Verify site built
+        run: |
+          if [ ! -d site ] || [ ! -f site/index.html ]; then
+            echo "MkDocs build failed: site/index.html not found"; exit 1
+          fi
