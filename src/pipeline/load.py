@@ -15,8 +15,19 @@ returns: "arquivo xlsx salvo com sucesso"
 
 
 def load_to_excel(df: pd.DataFrame, output_path: str, filename: str) -> str:
-    if not os.path.exists(output_path):
-        os.makedirs(output_path)
+    """Save DataFrame to an xlsx file.
 
-    df.to_excel(f"{output_path}/{filename}.xlsx", index=False)
+    Args:
+        df: DataFrame to save
+        output_path: directory to save the file
+        filename: filename without extension
+
+    Returns:
+        success message string
+    """
+
+    os.makedirs(output_path, exist_ok=True)
+
+    out_path = os.path.join(output_path, f"{filename}.xlsx")
+    df.to_excel(out_path, index=False)
     return "arquivo xlsx salvo com sucesso"
