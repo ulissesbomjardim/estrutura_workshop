@@ -5,18 +5,21 @@
 Material do workshop "Jornada de Dados" — exemplos simples de um pipeline ETL em Python usando pandas.
 
 Resumo rápido
-------------
+--------------
+
 - Projeto: simples ETL que lê planilhas Excel, concatena em um único DataFrame e salva o resultado.
 - Linguagem: Python
 - Gerenciador de dependências: Poetry
 
 Requisitos
----------
+----------
+
 - Python 3.12 (projeto declara "requires-python = \"3.12.7\"")
 - Poetry instalado (para criar/gerenciar o ambiente virtual e dependências)
 
 Instalação e ativação do ambiente (PowerShell)
---------------------------------------------
+--------------------------------------------------
+
 1. Instalar dependências e criar ambiente virtual com Poetry:
 
 ```powershell
@@ -37,6 +40,7 @@ poetry env info --path
 
 Executar o projeto
 ------------------
+
 O entrypoint de exemplo está em `src/main.py`. Para executar via Poetry sem ativar o shell:
 
 ```powershell
@@ -53,6 +57,7 @@ Comportamento esperado: o script irá procurar arquivos `.xlsx` em `data/input`,
 
 Testes
 ------
+
 Este projeto usa `pytest`. Os testes estão em `tests/`.
 
 Rodar todos os testes:
@@ -68,7 +73,8 @@ poetry run pytest --cov=src -q
 ```
 
 Formatação de código
---------------------
+-----------------------
+
 As tasks do `taskipy` (definidas em `[tool.taskipy.tasks]` do `pyproject.toml`) são instaladas no ambiente do Poetry. Execute a task `format` assim:
 
 ```powershell
@@ -84,19 +90,21 @@ task format
 A task `format` atual chama `isort .`. Para usar também o `black`, atualize a task para `isort . && black .` e garanta que `black` e `isort` estejam instalados no ambiente de desenvolvimento.
 
 Estrutura do repositório
-------------------------
+-------------------------
+
 - src/ — código fonte do pacote (package `pipeline`)
-	- src/main.py — script de exemplo que executa o pipeline
-	- src/pipeline/
-		- extract.py — leitura de arquivos .xlsx
-		- transform.py — concatena dataframes
-		- load.py — salva DataFrame em .xlsx
+  - src/main.py — script de exemplo que executa o pipeline
+  - src/pipeline/
+    - extract.py — leitura de arquivos .xlsx
+    - transform.py — concatena dataframes
+    - load.py — salva DataFrame em .xlsx
 - data/input — pasta de entrada (xlsx de exemplo)
 - data/output — saída gerada pelo pipeline
 - tests/ — testes pytest
 
 Git / Pull Requests (dicas rápidas)
-----------------------------------
+------------------------------------
+
 - Criar uma branch de feature e enviar para o remoto:
 
 ```powershell
@@ -113,17 +121,9 @@ gh pr create --base dev --head feature/minha-feature --title "feat: resumo" --bo
 ```
 
 CI / Codecov
------------
+------------
+
 - O repositório inclui integração de CI (GitHub Actions) e upload para Codecov.
 - Para repositórios privados, configure o secret `CODECOV_TOKEN` em Settings → Secrets and variables → Actions com o token obtido no site do Codecov.
-
-Observações e próximos passos
-----------------------------
-- O `README.md` foi limpo e organizado. Sugestões adicionais:
-	- Adicionar `pyproject` extras para dev (atualmente o grupo dev está vazio no campo `project.optional-dependencies`).
-	- Incluir um `.env.example` se variáveis de ambiente forem necessárias futuramente.
-	- Adicionar badges reais (build / coverage) quando os serviços estiverem configurados.
-
----
 
 Updated: 2025-10-15T10:55:57.4173356-03:00
